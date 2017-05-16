@@ -39,9 +39,12 @@ passport.use(
       // Job 1: Set up Mongo/Mongoose, create a User model which store the
       // google id, and the access token
       User
-        .findOneAndUpdate({ googleId: profile.id, accessToken })
+        .findOneAndUpdate(
+          {googleId: profile.id}, 
+          {$set: {accessToken: accessToken, googleId: profile.id}},{upsert: true, new:true})
         .then((users) => {
-          console.log(users)
+          // console.log('findOneAndUpdate ->',users)
+          return cb(null, users);
         })
         .catch(err => {
           console.error(err)
@@ -59,7 +62,7 @@ passport.use(
       //     googleId: profile.id,
       //     accessToken: accessToken
       // };
-      return cb(null, null);
+      
     })
 );
 
@@ -69,11 +72,15 @@ passport.use(
       // Job 3: Update this callback to try to find a user with a
       // matching access token.  If they exist, let em in, if not,
       // don't.
+      console.log(`token to look for ${token}`)
       User.findOne({accessToken: token})
-      if (!(token in database)) {
-        return done(null, false);
-      }
-      return done(null, database[token]);
+      .then((user) => {
+        if(user){
+          console.log(`I am in BEARER STRATEGY ${user}`)
+          return done(null, user);
+        }
+      })
+      .catch(err => {console.error(err)})
     }
   )
 );
