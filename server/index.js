@@ -1,8 +1,17 @@
+
+require('dotenv').config();
+const {DATABASE_URL, PORT} = require('./config');
 const path = require('path');
+const {User, QuizItem} = require('./models');
 const express = require('express');
 const passport = require('passport');
+const mongoose = require('mongoose');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const BearerStrategy = require('passport-http-bearer').Strategy;
+const bodyParser = require('body-parser');
+const jsonParser = bodyParser.json();
+
+mongoose.Promise = global.Promise;
 
 let secret = {
   CLIENT_ID: process.env.CLIENT_ID,
@@ -29,15 +38,30 @@ passport.use(
     (accessToken, refreshToken, profile, cb) => {
         // Job 1: Set up Mongo/Mongoose, create a User model which store the
         // google id, and the access token
+        User
+        .find({ googleId: profile.id })
+        .then((users) => {
+            console.log(users)
+        })    
+        .catch(err => {
+            console.error(err)
+        })
+        .then(user => {
+            User    
+            .create({
+                accessToken,
+                googleId: profile.id
+            })
+        })
         // Job 2: Update this callback to either update or create the user
         // so it contains the correct access token
-        const user = database[accessToken] = {
-            googleId: profile.id,
-            accessToken: accessToken
-        };
-        return cb(null, user);
-    }
-));
+        // const user = database[accessToken] = {
+        //     googleId: profile.id,
+        //     accessToken: accessToken
+        // };
+        return cb(null, null);
+    })
+);
 
 passport.use(
     new BearerStrategy(
@@ -45,6 +69,7 @@ passport.use(
             // Job 3: Update this callback to try to find a user with a
             // matching access token.  If they exist, let em in, if not,
             // don't.
+            // User.find({accessToken: token})
             if (!(token in database)) {
                 return done(null, false);
             }
@@ -96,23 +121,36 @@ app.get(/^(?!\/api(\/|$))/, (req, res) => {
 });
 
 let server;
-function runServer(port=3001) {
-    return new Promise((resolve, reject) => {
-        server = app.listen(port, () => {
-            resolve();
-        }).on('error', reject);
+function runServer(databaseUrl=DATABASE_URL, port=PORT) {
+  return new Promise((resolve, reject) => {
+    mongoose.connect(databaseUrl, err => {
+      if (err) {
+        return reject(err);
+      }
+      server = app.listen(port, () => {
+        console.log(`Your app is listening on port ${port}`);
+        resolve();
+      })
+      .on('error', err => {
+        mongoose.disconnect();
+        reject(err);
+      });
     });
+  });
 }
 
 function closeServer() {
-    return new Promise((resolve, reject) => {
-        server.close(err => {
-            if (err) {
-                return reject(err);
-            }
-            resolve();
-        });
-    });
+  return mongoose.disconnect().then(() => {
+     return new Promise((resolve, reject) => {
+       console.log('Closing server');
+       server.close(err => {
+           if (err) {
+               return reject(err);
+           }
+           resolve();
+       });
+     });
+  });
 }
 
 if (require.main === module) {
