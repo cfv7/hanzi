@@ -32,6 +32,10 @@
     "passport": "^0.3.2",
     "passport-google-oauth20": "^1.0.0",
     "passport-http-bearer": "^1.0.1",
+    "react": "^15.5.4",
+    "react-redux": "^5.0.4",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
     "xp": "^1.0.1"
   }
 }
