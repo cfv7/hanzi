@@ -38,6 +38,8 @@ passport.use(
     (accessToken, refreshToken, profile, cb) => {
       // Job 1: Set up Mongo/Mongoose, create a User model which store the
       // google id, and the access token
+      // Job 2: Update this callback to either update or create the user
+      // so it contains the correct access token
       User
         .findOneAndUpdate(
           {googleId: profile.id}, 
@@ -49,20 +51,6 @@ passport.use(
         .catch(err => {
           console.error(err)
         })
-        // .then(user => {
-        //   User
-        //     .create({
-        //       accessToken,
-        //       googleId: profile.id
-        //     })
-        // })
-      // Job 2: Update this callback to either update or create the user
-      // so it contains the correct access token
-      // const user = database[accessToken] = {
-      //     googleId: profile.id,
-      //     accessToken: accessToken
-      // };
-      
     })
 );
 
@@ -72,7 +60,7 @@ passport.use(
       // Job 3: Update this callback to try to find a user with a
       // matching access token.  If they exist, let em in, if not,
       // don't.
-      console.log(`token to look for ${token}`)
+      // console.log(`token to look for ${token}`)
       User.findOne({accessToken: token})
       .then((user) => {
         if(user){
@@ -114,7 +102,16 @@ app.get('/api/me',
 
 app.get('/api/questions',
   passport.authenticate('bearer', { session: false }),
-  (req, res) => res.json(['Question 1', 'Question 2'])
+  (req, res) => {
+   
+    QuizItem
+      .find()
+      .exec()
+      .then(data => {
+        return res.json([data[1].character, data[2].character, data[3].character])
+      })
+      .catch(err => console.error(err))
+  }
 );
 
 // Serve the built client

@@ -14,6 +14,6 @@ const quizItemSchema = mongoose.Schema({
 });
 
 const User = mongoose.model('users', userSchema);
-const QuizItem = mongoose.model('quiz-items', quizItemSchema);
+const QuizItem = mongoose.model('quizitems', quizItemSchema);
 
 module.exports = {User, QuizItem};
