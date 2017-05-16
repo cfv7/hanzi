@@ -1,0 +1,22 @@
+.question-container {
+  border: 1px solid black;
+  width: 400px;
+  margin: 0 auto;
+}
+.card-container{
+  position: relative;
+}
+.dummy-card {
+  width: 200px;
+  height: 200px;
+  background-color: lightgray;
+  border: 1px solid gray;
+  border-radius: 4px;
+}
+.card-value {
+  position:absolute;
+  top: 25px;
+  left: 80px;
+  font-size: 40px;
+
+}
