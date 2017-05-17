@@ -32,7 +32,11 @@ class QuestionPage extends React.Component {
     displayFeedback(){
     }
   render() {
-      
+      let card;
+      if(this.props.questions.length>0){
+           console.log({props:this.props});
+           card = <Card cardInfo={this.props.questions[this.props.index].character}/>
+      }
       if (!this.props.questions) { return <div>There are no questions...</div> };
    
 
@@ -41,13 +45,9 @@ class QuestionPage extends React.Component {
                 <ul className="question-list">
                     <h2>Quiz Questions</h2>
                     <div>
-                        { this.props && this.props.questions &&
-                        <div>{ this.props.questions.map((item,index) => 
-                            <span key={index}> 
-                                 <Card cardInfo={item.character}/>
-                            </span>)}
+                        <div> 
+                          {card}
                         </div>
-                        }
                         
                     </div>
                     <form onSubmit={e=> this.handleSubmit(e)}>
