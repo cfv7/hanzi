@@ -1,14 +1,14 @@
 import * as Cookies from 'js-cookie';
 
-export const NEW_GAME = 'NEW_GAME';
-export const newGame = () => ({
-  type: NEW_GAME
+export const NEW_QUIZ = 'NEW_QUIZ';
+export const newQuiz = () => ({
+  type: NEW_QUIZ
 })
 
 export const SUBMIT_ANSWER = 'SUBMIT_ANSWER';
-export const submitAnswer = (guess) => ({
+export const submitAnswer = (answer) => ({
   type: SUBMIT_ANSWER,
-  guess
+  answer
 })
 
 export const GET_QUESTIONS_SUCCESS = 'GET_QUESTIONS_SUCCESS';

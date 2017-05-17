@@ -1,6 +1,34 @@
+h1,h2,h3,h4,h5{
+  font-family: 'Rokkitt', serif;
+}
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+.title-image{
+  height: 200px;
+}
+.login-container{
+  margin: 0 auto;
+  margin-top: 50px;
+  width: 500px;
+}
+.login-button{
+  width: 150px;
+  margin: 0 auto;
+  margin-top: 70px;
+  border: 1px solid black;
+
+}
+.login-button a{
+  text-decoration: none
+}
+.login-container a{
+  margin-left: 10px;
+}
+
 .question-container {
   border: 1px solid black;
-  width: 400px;
+  width: 300px;
   margin: 0 auto;
 }
 .card-container{
@@ -19,4 +47,7 @@
   left: 80px;
   font-size: 40px;
 
+}
+form{
+  margin-top: 50px;
 }

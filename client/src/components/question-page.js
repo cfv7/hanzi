@@ -1,6 +1,9 @@
 import React from 'react';
-import * as Cookies from 'js-cookie';import {connect} from 'react-redux';
-import {getQuestions} from '../actions'
+import * as Cookies from 'js-cookie';
+import {connect} from 'react-redux';
+import {getQuestions, submitAnswer } from '../actions';
+import Card from './card';
+
 import './question-page.css';
 
 
@@ -23,6 +26,7 @@ class QuestionPage extends React.Component {
     }
     compareValues(input){
         let value = input.toLowerCase();
+        this.props.dispatch(submitAnswer(value));
         // compares the input value with the character meaning.
         // if values match update correct number counter
         // if valus do not match update incorrect number counter 
@@ -30,6 +34,7 @@ class QuestionPage extends React.Component {
     displayFeedback(){
     }
   render() {
+    const character = this.props.questions[this.props.index];
     const questions = this.state.questions.map((question, index) =>
       <li key={index}>{question}</li>
     );
@@ -38,9 +43,8 @@ class QuestionPage extends React.Component {
             <div className="question-container"> 
                 <ul className="question-list">
                     <h2>Quiz Questions</h2>
-                    <div className="card-container">
-                        <img alt="character-card" className="dummy-card"/>
-                        <h4 className="card-value">卡</h4>
+                    <div>
+                     <Card cardInfo={character}/>
                     </div>
                     <form onSubmit={e=> this.handleSubmit(e)}>
                         <input placeholder="meaning" ref={input => this.input = input}/>
@@ -54,7 +58,8 @@ class QuestionPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  questions: state.questions
+  questions: state.questions,
+  index: state.index
 })
 
 export default connect(mapStateToProps)(QuestionPage)
