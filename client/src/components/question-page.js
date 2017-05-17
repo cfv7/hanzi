@@ -47,6 +47,7 @@ class QuestionPage extends React.Component {
     displayFeedback(){
     }
   render() {
+      let disabled = this.props.isAnswerSubmitted ? false: true;
       let card;
       if(this.props.questions.length>0){
         if(!this.props.isFlipped){
@@ -77,7 +78,7 @@ class QuestionPage extends React.Component {
                         <input type="submit"/>
                     </form>
                     <button onClick={() => this.handleFlipBtn()} className="flip-btn">flip</button> 
-                    <button onClick={()=> this.handleNextBtn()} className="next-btn">next</button>
+                    <button disabled={disabled} onClick={()=> this.handleNextBtn()} className="next-btn">next</button>
     
                 </ul>
             </div>
@@ -88,7 +89,8 @@ class QuestionPage extends React.Component {
 const mapStateToProps = state => ({
   questions: state.questions,
   index: state.index,
-  isFlipped: state.isFlipped
+  isFlipped: state.isFlipped,
+  isAnswerSubmitted: state.isAnswerSubmitted
 })
 
 export default connect(mapStateToProps)(QuestionPage)

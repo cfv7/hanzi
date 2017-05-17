@@ -35,6 +35,12 @@ export const flipCard = (isFlipped) => ({
   isFlipped
 })
 
+export const TOGGLE_SUBMIT = 'TOGGLE_SUBMIT';
+export const toggleSubmit = (isAnswerSubmitted) => ({
+  type: TOGGLE_SUBMIT,
+  isAnswerSubmitted
+})
+
 
 export const getQuestions = () => dispatch => {
   const accessToken = Cookies.get('accessToken');
