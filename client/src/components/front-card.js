@@ -2,13 +2,12 @@ import React from 'react';
 import './question-page.css';
 import {connect} from 'react-redux';
 
-class Card extends React.Component{
+class FrontCard extends React.Component{
   render(){
-    console.log(this.props.cardInfo);
     return(
       <div className="card-container">
         <div className="dummy-card">
-          <h4 className="card-value">{this.props.cardInfo}</h4>
+          <h4 className="card-value">{this.props.cardInfo.character}</h4>
         </div>
       </div>
     )
@@ -20,4 +19,4 @@ const mapStateToProps = state => ({
   index: state.index
 })
 
-export default connect(mapStateToProps)(Card)
+export default connect(mapStateToProps)(FrontCard)
