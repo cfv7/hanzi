@@ -29,6 +29,11 @@ export const updateIndex = (index) => ({
   index
 })
 
+export const NEXT_CARD = 'NEXT_CARD';
+export const nextCard = () => ({
+  type: NEXT_CARD
+})
+
 export const FLIP_CARD = 'FLIP_CARD';
 export const flipCard = (isFlipped) => ({
   type: FLIP_CARD,
