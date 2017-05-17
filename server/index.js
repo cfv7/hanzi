@@ -107,7 +107,7 @@ app.get('/api/questions',
       .find()
       .exec()
       .then(data => {
-        return res.json([data[1].character, data[2].character, data[3].character])
+        return res.json(data)
       })
       .catch(err => console.error(err))
   }
