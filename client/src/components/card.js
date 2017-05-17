@@ -4,10 +4,11 @@ import {connect} from 'react-redux';
 
 class Card extends React.Component{
   render(){
+    console.log(this.props.cardInfo);
     return(
       <div className="card-container">
         <div className="dummy-card">
-          <h4 className="card-value">山</h4>
+          <h4 className="card-value">{this.props.cardInfo}</h4>
         </div>
       </div>
     )
