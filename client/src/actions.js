@@ -23,6 +23,18 @@ export const getQuestionsError = (err) => ({
   error: err
 })
 
+export const UPDATE_INDEX = 'UPDATE_INDEX';
+export const updateIndex = (index) => ({
+  type: UPDATE_INDEX,
+  index
+})
+
+export const FLIP_CARD = 'FLIP_CARD';
+export const flipCard = (isFlipped) => ({
+  type: FLIP_CARD,
+  isFlipped
+})
+
 
 export const getQuestions = () => dispatch => {
   const accessToken = Cookies.get('accessToken');
