@@ -10,9 +10,7 @@ import './question-page.css';
 class QuestionPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      questions: []
-    };
+
   }
 
   componentDidMount() {
@@ -34,23 +32,28 @@ class QuestionPage extends React.Component {
     displayFeedback(){
     }
   render() {
-    const character = this.props.questions[this.props.index];
-    const questions = this.state.questions.map((question, index) =>
-      <li key={index}>{question}</li>
-    );
+      
+      if (!this.props.questions) { return <div>There are no questions...</div> };
+   
 
         return (
             <div className="question-container"> 
                 <ul className="question-list">
                     <h2>Quiz Questions</h2>
                     <div>
-                     <Card cardInfo={character}/>
+                        { this.props && this.props.questions &&
+                        <div>{ this.props.questions.map((item,index) => 
+                            <span key={index}> 
+                                 <Card cardInfo={item.character}/>
+                            </span>)}
+                        </div>
+                        }
+                        
                     </div>
                     <form onSubmit={e=> this.handleSubmit(e)}>
                         <input placeholder="meaning" ref={input => this.input = input}/>
                         <input type="submit"/>
                     </form>
-                    {questions}
                 </ul>
             </div>
         );
