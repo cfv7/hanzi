@@ -82,7 +82,7 @@ export const getQuestions = () => dispatch => {
     return res.json();
   }).then(questions =>
     dispatch(getQuestionsSuccess(questions))
-  );
+    );
 }
 
 

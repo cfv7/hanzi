@@ -1,22 +1,28 @@
-import {SUBMIT_ANSWER, NEW_GAME, TOGGLE_INFO_MODAL, 
-        GET_QUESTIONS_SUCCESS, FLIP_CARD, NEXT_CARD, 
-        DISABLE_TOGGLE, ADD_TO_CORRECT, ADD_TO_INCORRECT, LOG_OUT} from './actions'
+import {
+  SUBMIT_ANSWER, NEW_GAME, TOGGLE_INFO_MODAL,
+  GET_QUESTIONS_SUCCESS, FLIP_CARD, NEXT_CARD,
+  DISABLE_TOGGLE, ADD_TO_CORRECT, ADD_TO_INCORRECT, LOG_OUT
+} from './actions'
+import Queue, {swapFirstAndLast} from './queue'
+
 
 const initialState = {
   questions: [],
   index: 0,
+  currentQuestion: null,
   isFlipped: false,
-  totalAttempts:0,
-  correctAnswers:0,
+  totalAttempts: 0,
+  correctAnswers: 0,
   disableToggle: true,
   correct: 0,
   incorrect: 0
 }
 
+
+
 const reducer = (state = initialState, action) => {
-  if(action.type === SUBMIT_ANSWER) {
-   
-    if(state.questions[state.index].meaning === action.answer){
+  if (action.type === SUBMIT_ANSWER) {
+    if (state.questions[state.index].meaning === action.answer) {
 
       let correct = state.correctAnswers++;
       let attempts = state.totalAttempts++;
@@ -30,55 +36,59 @@ const reducer = (state = initialState, action) => {
       window.alert("CORRECT");
 
     }
-    else{
+    else {
       let incorrectCount = state.incorrect++;
       let attempts = state.totalAttempts++;
       Object.assign({}, state, {
         totalAttempts: attempts,
         incorrect: incorrectCount
-
       });
-      window.alert(`INCORRECT! The correct answer was ${state.questions[state.index].meaning}` );
+      window.alert(`INCORRECT! The correct answer was ${state.questions[state.index].meaning}`);
     };
   }
-  if(action.type === GET_QUESTIONS_SUCCESS){
+  if (action.type === GET_QUESTIONS_SUCCESS) {
+    const queue = Queue(action.questions);
     return Object.assign({}, state, {
-      questions: action.questions
+      currentQuestion: queue.first.data,
+      questions: queue
     })
   }
-  if(action.type === FLIP_CARD){
+  if (action.type === FLIP_CARD) {
     return Object.assign({}, state, {
       isFlipped: action.isFlipped
     })
   }
-  if(action.type === NEXT_CARD){
+  if (action.type === NEXT_CARD) {
     let index = state.index + 1
-    if(index < state.questions.length) {
+    if (index < state.questions.length) {
       return {
         ...state,
+        currentQuestion: state.questions.first.data,
         index: index
       }
     }
   }
-  if(action.type === DISABLE_TOGGLE){
+  if (action.type === DISABLE_TOGGLE) {
     return Object.assign({}, state, {
       disableToggle: action.disableToggle
     });
   }
-  if(action.type === ADD_TO_CORRECT) {
+  if (action.type === ADD_TO_CORRECT) {
+    swapFirstAndLast(state.questions)
     return Object.assign({}, state, {
       correct: action.correct
     })
   }
-  if(action.type === ADD_TO_INCORRECT) {
+  if (action.type === ADD_TO_INCORRECT) {
+    Queue.sendBack(state.questions)
     return Object.assign({}, state, {
       incorrect: action.incorrect
     })
   }
-  if(action.type === LOG_OUT) {
+  if (action.type === LOG_OUT) {
 
   }
-  
+
   return state;
 }
 

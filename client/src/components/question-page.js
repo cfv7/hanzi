@@ -56,10 +56,11 @@ class QuestionPage extends React.Component {
     let card;
     if (this.props.questions.length > 0) {
       if (!this.props.isFlipped) {
-        card = <FrontCard cardInfo={this.props.questions[this.props.index]} />
+        console.log('asfs ->', this.props.currentQuestion)
+        card = <FrontCard cardInfo={this.props.currentQuestion} />
       }
       else if (this.props.isFlipped) {
-        card = <BackCard cardInfo={this.props.questions[this.props.index]} />
+        card = <BackCard cardInfo={this.props.currentQuestion} />
       }
     }
     if (!this.props.questions) { return <div>There are no questions...</div> };
@@ -76,6 +77,7 @@ class QuestionPage extends React.Component {
                     <div>
                     <ScoreCounter correct={this.props.correct} incorrect={this.props.incorrect} />
                     {card}
+                    {/*<FrontCard />*/}
                     </div>
 
                 </div>
@@ -99,7 +101,8 @@ const mapStateToProps = state => ({
   isFlipped: state.isFlipped,
   disableToggle: state.disableToggle,
   correct: state.correct,
-  incorrect: state.incorrect
+  incorrect: state.incorrect,
+  currentQuestion: state.currentQuestion
 })
 
 export default connect(mapStateToProps)(QuestionPage)
