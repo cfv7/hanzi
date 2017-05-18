@@ -53,6 +53,21 @@ export const addToIncorrect = (incorrect) => ({
   incorrect
 })
 
+// export const LOG_OUT = 'LOG_OUT';
+// export const logOut = () => ({
+//   type: LOG_OUT  
+// })
+export const logOut = () => dispatch => {
+  const accessToken = Cookies.get('accessToken');
+  console.log('LOGOUT DISPATCH');
+  fetch('/api/auth/logout', {
+    headers: {
+      'Authorization': `Bearer ${accessToken}`
+    },
+    method: 'GET'
+  })
+}
+
 
 export const getQuestions = () => dispatch => {
   const accessToken = Cookies.get('accessToken');
