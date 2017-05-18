@@ -5,6 +5,7 @@ import { getQuestions, submitAnswer, flipCard, nextCard, disableToggle } from '.
 import FrontCard from './front-card';
 import BackCard from './back-card';
 import ScoreCounter from './score-counter';
+import Header from './header';
 
 import './question-page.css';
 
@@ -64,26 +65,30 @@ class QuestionPage extends React.Component {
     if (!this.props.questions) { return <div>There are no questions...</div> };
 
 
-    return (
-      <div className="question-container">
-        <ul className="question-list">
-          <h2>Quiz Questions</h2>
-          <div>
-            <div>
-             <ScoreCounter correct={this.props.correct} incorrect={this.props.incorrect} />
-              {card}
+    return (     
+        <div>
+            <Header />
+
+            <div className="question-container">
+                <ul className="question-list">
+                <h2>Quiz Questions</h2>
+                <div>
+                    <div>
+                    <ScoreCounter correct={this.props.correct} incorrect={this.props.incorrect} />
+                    {card}
+                    </div>
+
+                </div>
+                <form onSubmit={e => this.handleSubmit(e)}>
+                    <input disabled={submit} placeholder="meaning" ref={input => this.input = input} />
+                    <input disabled={submit} type="submit" />
+                </form>
+                <button onClick={() => this.handleFlipBtn()} className="flip-btn" >flip</button>
+                <button disabled={next} onClick={() => this.handleNextBtn()} className="next-btn" >next</button>
+
+                </ul>
             </div>
-
-          </div>
-          <form onSubmit={e => this.handleSubmit(e)}>
-            <input disabled={submit} placeholder="meaning" ref={input => this.input = input} />
-            <input disabled={submit} type="submit" />
-          </form>
-          <button onClick={() => this.handleFlipBtn()} className="flip-btn" >flip</button>
-          <button disabled={next} onClick={() => this.handleNextBtn()} className="next-btn" >next</button>
-
-        </ul>
-      </div>
+        </div>
     );
   }
 }

@@ -1,6 +1,6 @@
 import {SUBMIT_ANSWER, NEW_GAME, TOGGLE_INFO_MODAL, 
         GET_QUESTIONS_SUCCESS, FLIP_CARD, NEXT_CARD, 
-        DISABLE_TOGGLE, ADD_TO_CORRECT, ADD_TO_INCORRECT} from './actions'
+        DISABLE_TOGGLE, ADD_TO_CORRECT, ADD_TO_INCORRECT, LOG_OUT} from './actions'
 
 const initialState = {
   questions: [],
@@ -74,6 +74,9 @@ const reducer = (state = initialState, action) => {
     return Object.assign({}, state, {
       incorrect: action.incorrect
     })
+  }
+  if(action.type === LOG_OUT) {
+
   }
   
   return state;
