@@ -1,4 +1,7 @@
+
 import * as Cookies from 'js-cookie';
+import Queue from './queue';
+console.log(Queue);
 
 export const NEW_QUIZ = 'NEW_QUIZ';
 export const newQuiz = () => ({
@@ -80,11 +83,17 @@ export const getQuestions = () => dispatch => {
       throw new Error(res.statusText);
     }
     return res.json();
-  }).then(questions =>
-    dispatch(getQuestionsSuccess(questions))
-  );
+  }).then(questions => {
+    let q = new Queue(questions);
+    dispatch(getQuestionsSuccess(q))}
+    );
 }
 
+
+
+export const createQueue = () => dispatch => ({
+
+})
 
 
 
