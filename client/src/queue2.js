@@ -1,33 +1,11 @@
-function createNode(data = null, next = null, prev = null) {
-  return {
-    data,
-    next,
-    prev
-  };
-}
-export function swapFirstAndLast(queue) {
-  let value = queue.first.data.meaning;
-  console.log('VALUE', value);
-  queue.dequeue();
-  queue.enqueue(value);
-  return queue;
-}
-export function sendBack(queue, num){
-    let wrongNode = queue.first;
-    let node = queue.first;
-    for (let i = 0; i < num; i++) {
-      node = node.prev;
-      // console.log('STOP HERE ->',node)
-    }
-    queue.first = queue.first.prev
-    queue.first.next = null
-    wrongNode.next = node;
-    wrongNode.prev = node.prev;
-    node.prev = wrongNode
-    node.prev.next = wrongNode
-    return queue;
-}
+let queue = new Object({[{
   
+}]
+})
+
+
+import React from 'react';
+
 export default class Queue {
   constructor(array) {
     this.first = null;
@@ -35,6 +13,18 @@ export default class Queue {
 
     array.forEach(item => this.enqueue(item))
   }
+createNode(data = null, next = null, prev = null) {
+  return {
+    data,
+    next,
+    prev
+  };
+}
+swapFirstAndLast(queue) {
+  let value = queue.first.data;
+  queue.dequeue();
+  queue.enqueue(value);
+}
 
   toArray() {
     const array = []
@@ -64,11 +54,17 @@ export default class Queue {
     wrongNode.prev = node.prev;
     node.prev = wrongNode
     node.prev.next = wrongNode
+
+    // Original:
+    // ====> previous
+    // [a, b, c, d, e]
+
+    // Expected:
+    // [b, c, d, a, e]
   }
 
-
   enqueue(data) {
-    const node = createNode(data);
+    const node = this.createNode(data);
 
     if (this.last) {
       node.next = this.last;
@@ -96,6 +92,16 @@ export default class Queue {
 
     return node.data;
   }
+
+
+  render(){
+    return(
+      <h1>Hello</h1>
+    )
+  }
+
+
+
 
 }
 

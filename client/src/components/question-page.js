@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Cookies from 'js-cookie';
 import { connect } from 'react-redux';
-import { getQuestions, submitAnswer, flipCard, nextCard, disableToggle } from '../actions';
+import { getQuestions, submitAnswer, flipCard, nextCard, disableToggle, addToIncorrect, addToCorrect } from '../actions';
 import FrontCard from './front-card';
 import BackCard from './back-card';
 import ScoreCounter from './score-counter';
@@ -14,6 +14,7 @@ class QuestionPage extends React.Component {
   constructor(props) {
     super(props);
   }
+ 
 
   componentDidMount() {
     this.props.dispatch(getQuestions())
@@ -24,12 +25,20 @@ class QuestionPage extends React.Component {
     this.compareValues(this.input.value);
     let toggleValue = this.props.disableToggle
     this.props.dispatch(disableToggle(!toggleValue));
+    this.input.value = '';
   }
-
-
-
   compareValues(input) {
     let value = input.toLowerCase();
+    if(value === this.props.currentQuestion.meaning){
+        let newValue = this.props.correct;
+        this.props.dispatch(addToCorrect(++newValue));
+        window.alert("CORRECT");
+    }
+    else{
+        let newValue = this.props.incorrect;
+        this.props.dispatch(addToIncorrect(++newValue));
+        window.alert(`INCORRECT! The correct answer was ${this.props.currentQuestion.meaning}`);
+    }
     this.props.dispatch(submitAnswer(value));
   }
   handleNextBtn() {
@@ -52,11 +61,9 @@ class QuestionPage extends React.Component {
   render() {
     let next = this.props.disableToggle;
     let submit = !this.props.disableToggle;
-    console.log('This is a TEEST',next,submit );
     let card;
-    if (this.props.questions.length > 0) {
+    if (this.props.currentQuestion) {
       if (!this.props.isFlipped) {
-        console.log('asfs ->', this.props.currentQuestion)
         card = <FrontCard cardInfo={this.props.currentQuestion} />
       }
       else if (this.props.isFlipped) {
@@ -82,11 +89,11 @@ class QuestionPage extends React.Component {
 
                 </div>
                 <form onSubmit={e => this.handleSubmit(e)}>
-                    <input disabled={submit} placeholder="meaning" ref={input => this.input = input} />
-                    <input disabled={submit} type="submit" />
+                    <input placeholder="meaning" ref={input => this.input = input} />
+                    <input type="submit" />
                 </form>
                 <button onClick={() => this.handleFlipBtn()} className="flip-btn" >flip</button>
-                <button disabled={next} onClick={() => this.handleNextBtn()} className="next-btn" >next</button>
+                {/*<button disabled={next} onClick={() => this.handleNextBtn()} className="next-btn" >next</button>*/}
 
                 </ul>
             </div>
