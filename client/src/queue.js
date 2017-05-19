@@ -1,4 +1,4 @@
-function createNode(data = null, next = null, prev = null) {
+export function createNode(data = null, next = null, prev = null) {
   return {
     data,
     next,
@@ -98,17 +98,4 @@ export default class Queue {
   }
 
 }
-
-
-// let q = new Queue(['x', 'y', 'z'])
-// q.enqueue('a')
-// q.enqueue('b')
-// q.enqueue('c')
-// q.enqueue('d')
-// q.enqueue('e')
-
-// q.sendBack(2)
-// swapFirstandLast(q);
-
-// Log out the Queue:
-// console.log(q.toArray())
+module.exports
