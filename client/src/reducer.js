@@ -14,8 +14,6 @@ const initialState = {
   index: 0,
   currentQuestion: null,
   isFlipped: false,
-  totalAttempts: 0,
-  correctAnswers: 0,
   disableToggle: true,
   correct: 0,
   incorrect: 0
@@ -55,13 +53,12 @@ const reducer = (state = initialState, action) => {
     return Object.assign({}, state, {
       questions: changedQ,
       currentQuestion: changedQ.first.data,
-      correct: action.correct
-      
+      correct: action.correct 
     })
   }
   if (action.type === ADD_TO_INCORRECT) {
     let repeatCard = state.questions;
-    sendBack(repeatCard, 1)
+    sendBack(repeatCard, 3);
     console.log('TESTFORADDTOINCORRECT', repeatCard);
     return Object.assign({}, state, {
       incorrect: action.incorrect,

@@ -1,7 +1,4 @@
-let queue = new Object({[{
-  
-}]
-})
+let queue = new Object({})
 
 
 import React from 'react';
