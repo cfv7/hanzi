@@ -67,6 +67,12 @@ export const addToIncorrect = (incorrect) => ({
   incorrect
 })
 
+export const ADD_TO_TOTAL_SCORE = 'ADD_TO_TOTAL_SCORE';
+export const addToTotalScore = (totalScore) => ({
+  type: ADD_TO_TOTAL_SCORE,
+  totalScore
+})
+
 export const logOut = () => dispatch => {
   const accessToken = Cookies.get('accessToken');
   console.log('LOGOUT DISPATCH');

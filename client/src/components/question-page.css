@@ -4,6 +4,26 @@ h1,h2,h3,h4,h5{
 * {
   font-family: 'Open Sans', sans-serif;
 }
+@media only screen and (min-width: 0px) and (max-width: 768px) {
+.submit-btn, .input{
+  background-color: white;
+  height: 30px;
+  margin-top: 30px;
+}
+.submit-btn{
+  border: 2px solid #6ecf99;
+  border-radius: 6px;
+  width: 80%;
+}
+.input{
+  text-align: center;
+  width: 80%;
+  height: 100px;
+}
+.input textarea{
+  background-color: #6ecf99;
+}
+}
 .title-image{
   height: 200px;
 }
@@ -17,7 +37,6 @@ h1,h2,h3,h4,h5{
   margin: 0 auto;
   margin-top: 70px;
   border: 2px solid #6ecf99;
-
 }
 .login-button a{
   text-decoration: none
@@ -25,7 +44,6 @@ h1,h2,h3,h4,h5{
 .login-container a{
   margin-left: 10px;
 }
-
 .question-container {
   position: relative;
   width: 300px;
@@ -64,7 +82,6 @@ h1,h2,h3,h4,h5{
 .pinyin{
   margin-top: 0;
 }
-
 form{
   margin-top: 50px;
 }
@@ -98,9 +115,7 @@ form{
 .submit-btn, .input{
   background-color: white;
   height: 30px;
-  
   margin-top: 30px;
-
 }
 .submit-btn{
   border: 2px solid #6ecf99;

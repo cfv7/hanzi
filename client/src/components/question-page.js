@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Cookies from 'js-cookie';
 import { connect } from 'react-redux';
-import { getQuestions, submitAnswer, flipCard, nextCard, disableToggle, addToIncorrect, addToCorrect } from '../actions';
+import { getQuestions, submitAnswer, flipCard, nextCard, disableToggle, addToIncorrect, addToCorrect, getDisplayName, addToTotalScore } from '../actions';
 import FrontCard from './front-card';
 import BackCard from './back-card';
 import ScoreCounter from './score-counter';
@@ -18,6 +18,7 @@ class QuestionPage extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(getQuestions())
+    this.props.dispatch(getDisplayName())
   }
 
   handleSubmit(event) {
@@ -29,15 +30,19 @@ class QuestionPage extends React.Component {
   }
   compareValues(input) {
     let value = input.toLowerCase();
+    let newTotal = this.props.totalScore;
+    console.log('newTotal', newTotal);
     if(value === this.props.currentQuestion.meaning){
         let newValue = this.props.correct;
         this.props.dispatch(addToCorrect(++newValue));
         window.alert("CORRECT");
+        this.props.dispatch(++newTotal);
     }
     else{
         let newValue = this.props.incorrect;
         this.props.dispatch(addToIncorrect(++newValue));
         window.alert(`INCORRECT! The correct answer was ${this.props.currentQuestion.meaning}`);
+        this.props.dispatch(++newTotal);
     }
     this.props.dispatch(submitAnswer(value));
   }
@@ -79,7 +84,7 @@ class QuestionPage extends React.Component {
 
             <div className="question-container">
                 <ul className="question-list">
-                <h2>Quiz Questions</h2>
+                <h2>Question #: {this.props.correct + this.props.incorrect}</h2>
                 <div>
                     <div>
                     <ScoreCounter correct={this.props.correct} incorrect={this.props.incorrect} />
@@ -88,12 +93,11 @@ class QuestionPage extends React.Component {
                     </div>
 
                 </div>
-                 <button onClick={() => this.handleFlipBtn()} className="flip-btn" >cheat?</button>
                 <form onSubmit={e => this.handleSubmit(e)}>
-                    <input className="input" placeholder="meaning" ref={input => this.input = input} />
-                    <input className="submit-btn" type="submit" />
+                    <input placeholder="meaning" ref={input => this.input = input} />
+                    <input type="submit" />
                 </form>
-               
+                <button onClick={() => this.handleFlipBtn()} className="flip-btn" >flip</button>
                 {/*<button disabled={next} onClick={() => this.handleNextBtn()} className="next-btn" >next</button>*/}
 
                 </ul>
@@ -110,7 +114,8 @@ const mapStateToProps = state => ({
   disableToggle: state.disableToggle,
   correct: state.correct,
   incorrect: state.incorrect,
-  currentQuestion: state.currentQuestion
+  currentQuestion: state.currentQuestion,
+  totalScore: state.totalScore
 })
 
 export default connect(mapStateToProps)(QuestionPage)
