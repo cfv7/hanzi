@@ -27,7 +27,6 @@ h1,h2,h3,h4,h5{
 }
 
 .question-container {
-  border: 1px solid black;
   width: 300px;
   margin: 0 auto;
 }

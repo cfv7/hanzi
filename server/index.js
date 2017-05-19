@@ -10,7 +10,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const BearerStrategy = require('passport-http-bearer').Strategy;
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
-const Queue = require('../client/src/queue');
+
 
 mongoose.Promise = global.Promise;
 
@@ -24,9 +24,6 @@ if (process.env.NODE_ENV != 'production') {
 }
 
 const app = express();
-
-// const database = {
-// };
 
 app.use(passport.initialize());
 

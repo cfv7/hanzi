@@ -21,6 +21,7 @@
   "author": "Joe Turner <jturner@thinkful.com>",
   "license": "MIT",
   "dependencies": {
+    "babel-preset-nodejs6-es6": "^1.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.1",
     "cross-env": "^3.1.4",
