@@ -8,6 +8,8 @@ if (process.env.NODE_ENV === 'production') {
     // Just run the server
     runServer(process.env.DATABASE_URL, process.env.PORT || 8080);
 }
+
+
 else {
     const app = express();
     // Proxy everything through to Create React App

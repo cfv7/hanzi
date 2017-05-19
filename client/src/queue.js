@@ -1,10 +1,11 @@
-export function createNode(data = null, next = null, prev = null) {
+ function createNode(data = null, next = null, prev = null) {
   return {
     data,
     next,
     prev
   };
 }
+
 export function swapFirstAndLast(queue) {
   let value = queue.first.data.meaning;
   console.log('VALUE', value);
@@ -12,6 +13,7 @@ export function swapFirstAndLast(queue) {
   queue.enqueue(value);
   return queue;
 }
+
 export function sendBack(queue, num){
     let wrongNode = queue.first;
     let node = queue.first;
@@ -27,7 +29,7 @@ export function sendBack(queue, num){
     node.prev.next = wrongNode
     return queue;
 }
-  
+
 export default class Queue {
   constructor(array) {
     this.first = null;
@@ -51,20 +53,6 @@ export default class Queue {
     return array
   }
 
-  sendBack(num) {
-    let wrongNode = this.first;
-    let node = this.first;
-    for (let i = 0; i < num; i++) {
-      node = node.prev;
-      // console.log('STOP HERE ->',node)
-    }
-    this.first = this.first.prev
-    this.first.next = null
-    wrongNode.next = node;
-    wrongNode.prev = node.prev;
-    node.prev = wrongNode
-    node.prev.next = wrongNode
-  }
 
 
   enqueue(data) {
@@ -98,4 +86,4 @@ export default class Queue {
   }
 
 }
-module.exports
+
