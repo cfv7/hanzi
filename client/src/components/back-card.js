@@ -8,9 +8,9 @@ class BackCard extends React.Component{
       <div className="card-container">
         <div className="dummy-card">
           <div className="info-container">
-            <p className="back-value">character: {this.props.cardInfo.character}</p>
-            <p className="pinyin">pinyin: {this.props.cardInfo.pinyin}</p>
-            <p className="meaning">meaning: {this.props.cardInfo.meaning}</p>
+            <p className="back-value">{this.props.cardInfo.character}</p>
+            <p className="pinyin">{this.props.cardInfo.pinyin}</p>
+            <p className="meaning">{this.props.cardInfo.meaning}</p>
           </div>
         </div>
       </div>

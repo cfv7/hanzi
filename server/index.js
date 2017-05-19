@@ -40,7 +40,7 @@ passport.use(
       // so it contains the correct access token
       User
         .findOneAndUpdate(
-          {googleId: profile.id}, 
+          {googleId: profile.id, displayName: profile.displayName}, 
           {$set: {accessToken: accessToken, googleId: profile.id}},{upsert: true, new:true})
         .then((users) => {
           // console.log('findOneAndUpdate ->',users)
@@ -62,7 +62,7 @@ passport.use(
       User.findOne({accessToken: token})
       .then((user) => {
         if(user){
-          console.log(`I am in BEARER STRATEGY ${user}`)
+          // console.log(`I am in BEARER STRATEGY ${user}`)
           return done(null, user);
         }
       })
@@ -94,8 +94,12 @@ app.get('/api/auth/logout', (req, res) => {
 app.get('/api/me',
   passport.authenticate('bearer', { session: false }),
   (req, res) => res.json({
-    googleId: req.user.googleId
+    googleId: req.user.googleId,
+    displayName: req.user.displayName
+  }).then(data => {
+    return res.json(data);
   })
+  .catch(err => console.error(err))
 );
 
 app.get('/api/questions',

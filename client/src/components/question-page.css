@@ -16,7 +16,7 @@ h1,h2,h3,h4,h5{
   width: 150px;
   margin: 0 auto;
   margin-top: 70px;
-  border: 1px solid black;
+  border: 2px solid #6ecf99;
 
 }
 .login-button a{
@@ -27,6 +27,7 @@ h1,h2,h3,h4,h5{
 }
 
 .question-container {
+  position: relative;
   width: 300px;
   margin: 0 auto;
 }
@@ -36,8 +37,8 @@ h1,h2,h3,h4,h5{
 .dummy-card {
   width: 200px;
   height: 200px;
-  background-color: lightgray;
-  border: 1px solid gray;
+  background-color: #6ecf99;
+  border: 1px solid #6ecf99;
   border-radius: 4px;
 }
 /*This contains the value of the front card*/
@@ -50,21 +51,61 @@ h1,h2,h3,h4,h5{
 /*This contains the values of the back card*/
 .info-container{
   position: absolute;
-  top: 10px;
-  left: 20px;
+  top: 30px;
+  left: 70px;
   font-size: 15px;
+  text-align: center;
+}
+.back-value{
+  font-size: 50px;
+  margin: 0;
+  padding: 0;
+}
+.pinyin{
+  margin-top: 0;
 }
 
 form{
   margin-top: 50px;
 }
-.header-title{
+.header-title-container{
   display: inline;
 }
+.header-title{
+  font-family: 'Rokkitt', serif;
+  font-size: 20px;
+}
 .header-container{
-  border-bottom: 1px solid lightgray;
+  border-bottom: 3px solid #6ecf99;
   display: flex;
   justify-content: space-around;
   margin-bottom: 30px;
   padding: 10px 0;
+}
+.flip-btn{
+  border-radius: 6px;
+  border: 2px solid #6ecf99;
+  background: white;
+  position: absolute;
+  top: 100;
+  left: 20;
+  text-align: center;
+  margin-left: 50px;
+  margin-top: 15px;
+  width: 100px;
+  height: 25px;
+}
+.submit-btn, .input{
+  background-color: white;
+  height: 30px;
+  
+  margin-top: 30px;
+
+}
+.submit-btn{
+  border: 2px solid #6ecf99;
+  border-radius: 6px;
+}
+.input{
+   text-align: center;
 }

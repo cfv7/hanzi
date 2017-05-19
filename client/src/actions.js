@@ -15,6 +15,17 @@ export const submitAnswer = (answer, disabledNext) => ({
   disabledNext
 })
 
+export const GET_DISPLAY_NAME_SUCCESS = 'GET_DISPLAY_NAME_SUCCESS';
+export const getDisplayNameSuccess = (displayName) => ({
+  type: GET_DISPLAY_NAME_SUCCESS,
+  displayName
+})
+
+export const GET_DISPLAY_NAME_ERROR = 'GET_DISPLAY_NAME_ERROR';
+export const getDisplayNameError = (err) => ({
+  type: GET_DISPLAY_NAME_ERROR,
+  err
+})
 export const GET_QUESTIONS_SUCCESS = 'GET_QUESTIONS_SUCCESS';
 export const getQuestionsSuccess = (questions) => ({
   type: GET_QUESTIONS_SUCCESS,
@@ -67,7 +78,22 @@ export const logOut = () => dispatch => {
   })
 }
 
-
+export const getDisplayName = () => dispatch => {
+  const accessToken = Cookies.get('accessToken');
+  fetch('/api/me', {
+    headers: {
+      'Authorization': `Bearer ${accessToken}`
+    }
+  }).then(res => {
+    if(!res.ok){
+      throw new Error(res.statusText);
+    }
+    return res.json();
+  }).then(displayName => {
+    console.log('!!!!!!!!!!00000000',displayName);
+    dispatch(getDisplayNameSuccess(displayName))
+  });
+}
 export const getQuestions = () => dispatch => {
   const accessToken = Cookies.get('accessToken');
   fetch('/api/questions', {
@@ -81,8 +107,8 @@ export const getQuestions = () => dispatch => {
     return res.json();
   }).then(questions => {
     let q = new Queue(questions);
-    dispatch(getQuestionsSuccess(q))}
-    );
+    dispatch(getQuestionsSuccess(q))
+  });
 }
 
 

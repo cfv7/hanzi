@@ -88,11 +88,12 @@ class QuestionPage extends React.Component {
                     </div>
 
                 </div>
+                 <button onClick={() => this.handleFlipBtn()} className="flip-btn" >cheat?</button>
                 <form onSubmit={e => this.handleSubmit(e)}>
-                    <input placeholder="meaning" ref={input => this.input = input} />
-                    <input type="submit" />
+                    <input className="input" placeholder="meaning" ref={input => this.input = input} />
+                    <input className="submit-btn" type="submit" />
                 </form>
-                <button onClick={() => this.handleFlipBtn()} className="flip-btn" >flip</button>
+               
                 {/*<button disabled={next} onClick={() => this.handleNextBtn()} className="next-btn" >next</button>*/}
 
                 </ul>
