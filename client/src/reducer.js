@@ -2,7 +2,7 @@ import {
   SUBMIT_ANSWER, NEW_GAME, TOGGLE_INFO_MODAL,
   GET_QUESTIONS_SUCCESS, FLIP_CARD, NEXT_CARD,
   DISABLE_TOGGLE, ADD_TO_CORRECT, ADD_TO_INCORRECT, 
-  LOG_OUT, GET_DISPLAY_NAME_SUCCESS
+  LOG_OUT, GET_DISPLAY_NAME_SUCCESS, ADD_TO_TOTAL_SCORE
 } from './actions';
 
 import Queue, {swapFirstAndLast, sendBack} from './queue';
@@ -16,7 +16,8 @@ const initialState = {
   isFlipped: false,
   disableToggle: true,
   correct: 0,
-  incorrect: 0
+  incorrect: 0,
+  totalScore: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -70,6 +71,11 @@ const reducer = (state = initialState, action) => {
       incorrect: action.incorrect,
       questions: repeatCard,
       currentQuestion: repeatCard.first.data
+    })
+  }
+  if (action.type === ADD_TO_TOTAL_SCORE){
+    Object.assign({}, state, {
+      totalScore: action.totalScore
     })
   }
   if (action.type === LOG_OUT) {

@@ -9,6 +9,7 @@ export function Header(props) {
         <span className="header-title">Mandarin X</span>
       </div>
       <div className="log-out">
+        {props.displayName}
         <button onClick={() => props.dispatch(logOut())} >Log Out</button>
       </div>
     </div>
@@ -16,7 +17,7 @@ export function Header(props) {
   )
 }
 const mapStateToProps = state => ({
-
+  displayName: state.displayName.displayName
 })
 
 export default connect(mapStateToProps)(Header);
