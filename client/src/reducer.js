@@ -10,7 +10,6 @@ import Queue, {swapFirstAndLast, sendBack} from './queue';
 console.log(swapFirstAndLast, 'test')
 
 const initialState = {
-  questions: [],
   index: 0,
   currentQuestion: null,
   isFlipped: false,
