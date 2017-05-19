@@ -15,8 +15,7 @@ class FrontCard extends React.Component{
 }
 
 const mapStateToProps = state => ({
-  questions: state.questions,
-  index: state.index
+  currentQuestion: state.currentQuestion,
 })
 
 export default connect(mapStateToProps)(FrontCard)
