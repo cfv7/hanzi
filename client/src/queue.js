@@ -1,4 +1,4 @@
-export function createNode(data = null, next = null, prev = null) {
+ export function createNode(data = null, next = null, prev = null) {
   return {
     data,
     next,
@@ -28,7 +28,7 @@ export function sendBack(queue, num){
     return queue;
 }
   
-export default class Queue {
+ export default class Queue {
   constructor(array) {
     this.first = null;
     this.last = null;
@@ -98,4 +98,3 @@ export default class Queue {
   }
 
 }
-module.exports
