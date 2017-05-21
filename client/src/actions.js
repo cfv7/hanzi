@@ -73,6 +73,11 @@ export const addToTotalScore = (totalScore) => ({
   totalScore
 })
 
+export const SIGN_OUT = 'SIGN_OUT';
+export const SignOut = () => ({
+    type: SIGN_OUT
+});
+
 export const logOut = () => dispatch => {
   const accessToken = Cookies.get('accessToken');
   console.log('LOGOUT DISPATCH');
@@ -96,10 +101,11 @@ export const getDisplayName = () => dispatch => {
     }
     return res.json();
   }).then(displayName => {
-    console.log('!!!!!!!!!!00000000',displayName);
+    console.log('displayName ->',displayName);
     dispatch(getDisplayNameSuccess(displayName))
   });
 }
+
 export const getQuestions = () => dispatch => {
   const accessToken = Cookies.get('accessToken');
   fetch('/api/questions', {
@@ -120,7 +126,6 @@ export const getQuestions = () => dispatch => {
 
 
 export const createQueue = () => dispatch => ({
-
 })
 
 

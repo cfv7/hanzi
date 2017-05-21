@@ -75,6 +75,7 @@ class QuestionPage extends React.Component {
         card = <BackCard cardInfo={this.props.currentQuestion} />
       }
     }
+    if (this.props.correct >= 10) return alert('game over')
     if (!this.props.questions) { return <div>There are no questions...</div> };
 
 
@@ -84,7 +85,7 @@ class QuestionPage extends React.Component {
 
             <div className="question-container">
                 <ul className="question-list">
-                <h2>Question #: {this.props.correct + this.props.incorrect}</h2>
+                {/*<h2 className="question-title">Question #: {this.props.correct + this.props.incorrect}</h2>*/}
                 <div>
                     <div>
                     <ScoreCounter correct={this.props.correct} incorrect={this.props.incorrect} />

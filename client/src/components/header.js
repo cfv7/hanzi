@@ -1,8 +1,9 @@
 import React from 'react';
-import { logOut } from '../actions'
+import { logOut, signOut } from '../actions'
 import { connect } from 'react-redux';
 
 export function Header(props) {
+  
   return (
     <div className="header-container">
       <div className="header-title-container">
@@ -10,7 +11,8 @@ export function Header(props) {
       </div>
       <div className="log-out">
         {props.displayName}
-        <button onClick={() => props.dispatch(logOut())} >Log Out</button>
+        <br/>
+        <a className=""href="/api/auth/logout">log out</a>
       </div>
     </div>
 

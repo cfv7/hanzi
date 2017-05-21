@@ -1,99 +1,57 @@
-# Space Repetition Starter Kit
+# Mandarin-X
 
-This should get you started with your Spaced Repetition app. We're giving you your basic directory structure, and the framework for authentication. However, we aren't persisting any information, and it will be your job to add Mongo/Mongoose. There are helpful comments in `server/index.js`.
+## Functional Specification
+-[presentation](https://docs.google.com/presentation/d/103c-r7qpS5HwX3zPI1LMWO5t8-jG2ScPfdMoFK8n7Rs/edit#slide=id.g21ca4a0167_0_228)
 
-In development, the starter kit runs two servers. One of which is from `create-react-app`, so you get all the fancy hot reloading, etc, the other is the backend. In production, we generate a static folder with all our React stuff, and serve that with Express.
+### Overview
 
-## Getting started
+The product will provide a spaced repetition algorithm that aid in learning Chinese in a very effective manner.
 
-First, fork the repo on Github to your own account
+Disclaimer: This project is mainly built for learning purposes and not intended for production use.
 
-### Clone the repo
+### Functionality
 
-```sh
-$ git clone https://github.com/YOUR_USERNAME_HERE/spaced-repetition-starter
-```
+#### Frontend
 
-```sh
-$ cd spaced-repetition-starter
-```
+The frontend for the app will be built using React and Redux, and allow users to login, answer the questions, and see how many questions they have successfully answered. To answer a question the user will be shown a word in the language they are trying to learn on the left-hand side of the screen, and asked to type the corresponding word in their native language on the right-hand side. When they submit the they will be given feedback on whether they were correct, and taken to the next question.
 
-```sh
-$ npm install
-```
+The frontend will need to submit information stating whether the question was answer correctly or not to the backend so that the spaced repetition algorithm can take that into account. This will also allow the user's score (how many questions they have answered correctly) to be updated.
 
-You can run it locally now with `npm run dev`, but the Google OAuth stuff won't work without your own credentials.
+To authenticate, you are going to be using Google's implementation of OAuth. This will allow anyone with a Google account to simply and easily register or login to your app. On the frontend this makes your requirements very simple: you simply need a login button which links to the appropriate backend endpoint, and a combination of Google and your backend will take care of the rest.
 
-### Get Google OAuth Credentials
+##### Requirements
 
-Visit https://console.developers.google.com
+- Technologies: React, Redux
+- Two pages: Landing page and spaced repetition page
+- Landing page:
+  - Advertise the app
+  - Register/login with Google button
+- Spaced repetition page:
+  - Displays current word
+  - Text input for answer
+  - Notifies the user whether they were correct or incorrect
+  - Submits correct/incorrect to backend
+  - Displays a count of how many questions were answered correctly
 
-* Navigate to Library 
-* Under 'Social APIs', Click 'Google+ API'
-* Click 'Enable' at the top (if it isn't already)
+#### Backend
 
+The backend of the app plays three key roles. The first is authentication. To allow users to authenticate, the backend should use the Google OAuth 2.0 strategy for Passport.
 
-* Navigate to Credentials
-* It may require you to configure OAuth consent screen.
-* Click 'Create credentials'
-* Choose 'OAuth Client ID'
-* Choose 'Web application'
-* Add `http://localhost:8080` to Authorized JavaScript origins
-* Add `http://localhost:8080/api/auth/google/callback` to Authorized redirect URIs
-* Click 'Create'
+The second role is to integrate the spaced repetition algorithm into your app. It should have an endpoint for the frontend to fetch the next question from, and an endpoint for the frontend to record what the user's response was.
 
-You should get a Client ID and Secret.
+The third role is to store the users' progress in a MongoDB database. This should include both the number of questions which they have answered correctly, plus any information about their answer history that your spaced repetition algorithm needs in order to generate a new sequence of words to test the user.
 
-Back in your project locally, create an `secret.js` file in the `/server` directory:
+##### Requirements
 
-(Use the client ID and secret we just got from Google)
+- Technologies: Node.js, Express, MongoDB, Passport, OAuth
+- Allow users to register/login using Google OAuth
+- Use the spaced repetition algorithm to generate the next word pair
+- Pairs of words should be stored in a Mongo database
+  - This should be a fixed array of questions for an MVP
+- Store the number of questions which users have answered correctly in the database
+- Store whatever information is needed for the algorithm about the user's answer history in the database
 
-```js
-module.exports = {
-  CLIENT_ID: 'yourId123.apps.googleusercontent.com',
-  CLIENT_SECRET: 'yoursecret'
-}
-```
+#### Wireframe
 
-This file is in ignored by git because it is in your `.gitignore`. Never commit or push 'secret.js', the client id and secret need to be kept safe like a password.
-
-### Local Development
-
-```sh
-  npm run dev
-```
-
-## Deployment to Heroku
-
-```sh
-$ heroku create
-```
-
-Configure your Google client id and secret on Heroku:
-
-```sh
-$ heroku config:set CLIENT_ID=yourId123.apps.googleusercontent.com CLIENT_SECRET=yoursecret
-```
-
-(You can also do this on dashboard.heroku.com under your app's settings.)
-
-### To deploy:
-
-```sh
-$ git push heroku master
-```
-
-Your app should be live on Heroku soon, but if you try to `Log in with Google`, you will get a 400 error. Take note of your new app's URL.
-
-
-#### Updating Google API authorized origins
-
-
-To fix this, go back to the Google API Dashboard and:
-
-(You might need to use `http` and or `http` for your Heroku URIs)
-
-- Add `http://your-app-name-123.herokuapp.com` to Authorized JavaScript origins
-- Add `http://your-app-name-123.herokuapp.com/api/auth/google/callback` to Authorized redirect URIs
-
-Try to log in  `Log in with Google` again, and you're golden!
+- [Splash Page](https://wireframe.cc/PAFKuo)
+- [Main App](https://wireframe.cc/7jKL60)
