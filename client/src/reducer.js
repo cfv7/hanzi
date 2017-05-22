@@ -17,7 +17,7 @@ const initialState = {
   disableToggle: true,
   correct: 0,
   incorrect: 0,
-  totalScore: 0
+  totalScore: 0,
 }
 
 const reducer = (state = initialState, action) => {

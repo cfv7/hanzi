@@ -53,6 +53,7 @@ class QuestionPage extends React.Component {
     this.input.value = '';
   }
   handleFlipBtn() {
+  
     if (this.props.isFlipped === true) {
       this.props.dispatch(flipCard(false));
     }
@@ -63,6 +64,7 @@ class QuestionPage extends React.Component {
   }
   displayFeedback() {
   }
+  
   render() {
     let next = this.props.disableToggle;
     let submit = !this.props.disableToggle;
@@ -116,7 +118,7 @@ const mapStateToProps = state => ({
   correct: state.correct,
   incorrect: state.incorrect,
   currentQuestion: state.currentQuestion,
-  totalScore: state.totalScore
+  totalScore: state.totalScore,
 })
 
 export default connect(mapStateToProps)(QuestionPage)

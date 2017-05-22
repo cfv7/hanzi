@@ -3,23 +3,30 @@ import { logOut, signOut } from '../actions'
 import { connect } from 'react-redux';
 
 export function Header(props) {
+  function getUserName(){
+    if(props.userInfo){
+      return(
+        <div className="log-out">
+          {props.userInfo.displayName}
+          <br/>
+          <a className=""href="/api/auth/logout">log out</a>
+        </div>
+      )
+    }
+  }
   
   return (
     <div className="header-container">
       <div className="header-title-container">
         <span className="header-title">Mandarin X</span>
       </div>
-      <div className="log-out">
-        {props.displayName}
-        <br/>
-        <a className=""href="/api/auth/logout">log out</a>
-      </div>
+      {getUserName()}
     </div>
 
   )
 }
 const mapStateToProps = state => ({
-  displayName: state.userInfo.displayName
+  userInfo: state.userInfo
 })
 
 export default connect(mapStateToProps)(Header);
