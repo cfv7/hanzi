@@ -2,7 +2,7 @@ import {
   SUBMIT_ANSWER, NEW_GAME, TOGGLE_INFO_MODAL,
   GET_QUESTIONS_SUCCESS, FLIP_CARD, NEXT_CARD,
   DISABLE_TOGGLE, ADD_TO_CORRECT, ADD_TO_INCORRECT, 
-  LOG_OUT, GET_DISPLAY_NAME_SUCCESS, ADD_TO_TOTAL_SCORE
+  LOG_OUT, GET_USER_INFO_SUCCESS, ADD_TO_TOTAL_SCORE
 } from './actions';
 
 import Queue, {swapFirstAndLast, sendBack} from './queue';
@@ -21,10 +21,10 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-  if (action.type === GET_DISPLAY_NAME_SUCCESS) {
+  if (action.type === GET_USER_INFO_SUCCESS) {
       console.log('SUCCESS');
     return Object.assign({}, state, {
-      displayName: action.displayName
+      userInfo: action.userInfo
     })
   }
 
