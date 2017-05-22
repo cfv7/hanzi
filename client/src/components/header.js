@@ -19,7 +19,7 @@ export function Header(props) {
   )
 }
 const mapStateToProps = state => ({
-  displayName: state.displayName.displayName
+  displayName: state.userInfo.displayName
 })
 
 export default connect(mapStateToProps)(Header);

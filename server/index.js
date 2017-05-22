@@ -42,9 +42,9 @@ passport.use(
         .findOneAndUpdate(
           {googleId: profile.id, displayName: profile.displayName}, 
           {$set: {accessToken: accessToken, googleId: profile.id}},{upsert: true, new:true})
-        .then((users) => {
+        .then((user) => {
           // console.log('findOneAndUpdate ->',users)
-          return cb(null, users);
+          return cb(null, user);
         })
         .catch(err => {
           console.error(err)
@@ -61,6 +61,7 @@ passport.use(
       // console.log(`token to look for ${token}`)
       User.findOne({accessToken: token})
       .then((user) => {
+        console.log('USER=>', user)
         if(user){
           // console.log(`I am in BEARER STRATEGY ${user}`)
           return done(null, user);
@@ -96,10 +97,7 @@ app.get('/api/me',
   (req, res) => res.json({
     googleId: req.user.googleId,
     displayName: req.user.displayName
-  }).then(data => {
-    return res.json(data);
   })
-  .catch(err => console.error(err))
 );
 
 app.get('/api/questions',

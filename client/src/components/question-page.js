@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Cookies from 'js-cookie';
 import { connect } from 'react-redux';
-import { getQuestions, submitAnswer, flipCard, nextCard, disableToggle, addToIncorrect, addToCorrect, getDisplayName, addToTotalScore } from '../actions';
+import { getQuestions, submitAnswer, flipCard, nextCard, disableToggle, addToIncorrect, addToCorrect, getUserInfo, addToTotalScore } from '../actions';
 import FrontCard from './front-card';
 import BackCard from './back-card';
 import ScoreCounter from './score-counter';
@@ -18,7 +18,7 @@ class QuestionPage extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(getQuestions())
-    this.props.dispatch(getDisplayName())
+    this.props.dispatch(getUserInfo())
   }
 
   handleSubmit(event) {
