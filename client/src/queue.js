@@ -34,7 +34,6 @@ export default class Queue {
   constructor(array) {
     this.first = null;
     this.last = null;
-
     array.forEach(item => this.enqueue(item))
   }
 
@@ -49,7 +48,6 @@ export default class Queue {
 
     // Last node.
     array.push(node)
-
     return array
   }
 

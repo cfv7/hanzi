@@ -15,7 +15,6 @@ class QuestionPage extends React.Component {
     super(props);
   }
  
-
   componentDidMount() {
     this.props.dispatch(getQuestions())
     this.props.dispatch(getUserInfo())
@@ -46,6 +45,7 @@ class QuestionPage extends React.Component {
     }
     this.props.dispatch(submitAnswer(value));
   }
+
   handleNextBtn() {
     let toggleValue = this.props.disableToggle
     this.props.dispatch(nextCard());
@@ -77,9 +77,9 @@ class QuestionPage extends React.Component {
         card = <BackCard cardInfo={this.props.currentQuestion} />
       }
     }
+    // if(this.props.nextCard === undefined) return this.
     if (this.props.correct >= 10) return alert('game over')
     if (!this.props.questions) { return <div>There are no questions...</div> };
-
 
     return (     
         <div>

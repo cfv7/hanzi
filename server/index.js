@@ -34,19 +34,23 @@ passport.use(
     callbackURL: `/api/auth/google/callback`
   },
     (accessToken, refreshToken, profile, cb) => {
-      // Job 1: Set up Mongo/Mongoose, create a User model which store the
-      // google id, and the access token
-      // Job 2: Update this callback to either update or create the user
-      // so it contains the correct access token
       User
-        .findOneAndUpdate(
-          {googleId: profile.id, displayName: profile.displayName}, 
-          {$set: {accessToken: accessToken, googleId: profile.id}},{upsert: true, new:true})
+        .findOneAndUpdate({
+          googleId: profile.id, 
+          displayName: profile.displayName
+        }, { 
+          $set: {
+            accessToken: accessToken, 
+            googleId: profile.id
+          }
+        }, {
+          upsert: true, 
+          new:true
+        })
         .then((user) => {
-          // console.log('findOneAndUpdate ->',users)
           return cb(null, user);
         })
-        .catch(err => {
+        .catch((err) => {
           console.error(err)
         })
     })
@@ -55,19 +59,18 @@ passport.use(
 passport.use(
   new BearerStrategy(
     (token, done) => {
-      // Job 3: Update this callback to try to find a user with a
-      // matching access token.  If they exist, let em in, if not,
-      // don't.
-      // console.log(`token to look for ${token}`)
-      User.findOne({accessToken: token})
-      .then((user) => {
-        console.log('USER=>', user)
-        if(user){
-          // console.log(`I am in BEARER STRATEGY ${user}`)
-          return done(null, user);
-        }
-      })
-      .catch(err => {console.error(err)})
+      User
+        .findOne({
+          accessToken: token
+        })
+        .then((user) => {
+          if(user){
+            return done(null, user);
+          }
+        })
+        .catch((err) => {
+          console.error(err)
+        })
     }
   )
 );

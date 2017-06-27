@@ -120,6 +120,7 @@ export const getQuestions = () => dispatch => {
   }).then(questions => {
     let q = new Queue(questions);
     dispatch(getQuestionsSuccess(q))
+    console.log(questions)
   });
 }
 

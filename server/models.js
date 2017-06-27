@@ -7,7 +7,6 @@ const userSchema = mongoose.Schema({
 });
 
 const quizItemSchema = mongoose.Schema({
-  index: {type: Number, required: true},
   character: {type: String, required: true},
   meaning: {type: String, required: true},
   hint: {type: String},

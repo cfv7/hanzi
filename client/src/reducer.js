@@ -66,7 +66,7 @@ const reducer = (state = initialState, action) => {
   if (action.type === ADD_TO_INCORRECT) {
     let repeatCard = state.questions;
     sendBack(repeatCard, 3);
-    console.log('TESTFORADDTOINCORRECT', repeatCard);
+    console.log('STATE.QUESTIONS', state.questions);
     return Object.assign({}, state, {
       incorrect: action.incorrect,
       questions: repeatCard,
