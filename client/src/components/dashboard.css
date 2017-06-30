@@ -1,0 +1,23 @@
+.dashboard-container{
+  margin: 0 auto;
+}
+/*.score-board{
+  border: 2px solid #6ecf99;
+  margin: 0 auto;
+  margin-left: auto;
+  text-align: center;
+  background-color: #D3D5D4;
+}*/
+.dashboard-info{
+  max-width: 400px;
+  margin: 0 auto;
+}
+button {
+  width: 150px;
+  height: 50px;
+  background-color: white;
+  border: 1px solid #A1CCA5;
+  font-size: 15px;
+  color: #2E4057;
+  border-radius: 10px;
+}
