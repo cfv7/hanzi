@@ -3,6 +3,7 @@ import * as Cookies from 'js-cookie';
 
 import QuestionPage from './question-page';
 import LoginPage from './login-page';
+import Dashboard from './dashboard';
 
 class App extends React.Component {
   constructor(props) {
@@ -44,7 +45,7 @@ class App extends React.Component {
       return <LoginPage />;
     }
 
-    return <QuestionPage />;
+    return <Dashboard />;
   }
 }
 

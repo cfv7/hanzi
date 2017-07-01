@@ -15,7 +15,7 @@ export default class Dashboard extends React.Component{
         </div>*/}
         <div className="dashboard-info">
           <h2>Quiz Category</h2>
-          <button>General Quiz</button>
+          <button><a href={'/api/questions'} >General Quiz</a></button>
          {/*<Link to={'/quiz'}>Take a Quiz</Link>*/}
         </div>
       </div>
