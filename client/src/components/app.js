@@ -45,7 +45,7 @@ class App extends React.Component {
       return <LoginPage />;
     }
 
-    return <Dashboard />;
+    return <QuestionPage />;
   }
 }
 

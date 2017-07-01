@@ -6,7 +6,6 @@ import FrontCard from './front-card';
 import BackCard from './back-card';
 import ScoreCounter from './score-counter';
 import Header from './header';
-
 import './question-page.css';
 
 
@@ -86,24 +85,28 @@ class QuestionPage extends React.Component {
             <Header />
 
             <div className="question-container">
-                <ul className="question-list">
+                {/*<ul className="question-list">*/}
                 {/*<h2 className="question-title">Question #: {this.props.correct + this.props.incorrect}</h2>*/}
                 <div>
                     <div>
-                    <ScoreCounter correct={this.props.correct} incorrect={this.props.incorrect} />
-                    {card}
-                    {/*<FrontCard />*/}
+                      <ScoreCounter 
+                        correct={this.props.correct} 
+                        incorrect={this.props.incorrect} 
+                      />
+                      {card}
                     </div>
-
                 </div>
                 
-                <button onClick={() => this.handleFlipBtn()} className="flip-btn" >cheat?</button>
+                <div onClick={() => this.handleFlipBtn()} className="card-container flip-btn">
+                <p>cheat?</p>
+                </div>
+
                 <form onSubmit={e => this.handleSubmit(e)}>
                     <input className="input" placeholder="meaning" ref={input => this.input = input} />
                     <input className="submit-btn" type="submit" />
                 </form>
 
-                </ul>
+                {/*</ul>*/}
             </div>
         </div>
     );
