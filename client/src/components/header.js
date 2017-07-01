@@ -18,7 +18,7 @@ export function Header(props) {
   return (
     <div className="header-container">
       <div className="header-title-container">
-        <span className="header-title">Mandarin X</span>
+        <span className="header-title">Hanzi</span>
       </div>
       {getUserName()}
     </div>
