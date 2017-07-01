@@ -78,6 +78,12 @@ export const SignOut = () => ({
     type: SIGN_OUT
 });
 
+export const UPDATE_USER_QUIZ_CHOICE = 'UPDATE_USER_QUIZ_CHOICE';
+export const updateUserQuizChoice = (userQuizChoice) => ({
+  type: UPDATE_USER_QUIZ_CHOICE,
+  userQuizChoice
+}) 
+
 export const logOut = () => dispatch => {
   const accessToken = Cookies.get('accessToken');
   console.log('LOGOUT DISPATCH');
