@@ -88,7 +88,8 @@ class QuestionPage extends React.Component {
             <div className="question-container">
                 <ul className="question-list">
                 {/*<h2 className="question-title">Question #: {this.props.correct + this.props.incorrect}</h2>*/}
-                <div>
+                <div className="question-info">
+                    <h2>{this.props.userQuizChoice}</h2>
                     <div>
                     <ScoreCounter correct={this.props.correct} incorrect={this.props.incorrect} />
                     {card}
@@ -119,6 +120,7 @@ const mapStateToProps = state => ({
   incorrect: state.incorrect,
   currentQuestion: state.currentQuestion,
   totalScore: state.totalScore,
+  userQuizChoice: state.userQuizChoice
 })
 
 export default connect(mapStateToProps)(QuestionPage)
