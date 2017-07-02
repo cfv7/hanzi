@@ -4,6 +4,7 @@ import './dashboard.css';
 import './header.css'
 import Header from './header.js';
 import QuestionPage from './question-page';
+import SelectQuiz from './select-quiz'
 export default class Dashboard extends React.Component{
   render(){
     return(
@@ -15,7 +16,9 @@ export default class Dashboard extends React.Component{
         </div>*/}
         <div className="dashboard-info">
           <h2>Quiz Category</h2>
-          <button><a href={'/api/questions'} >General Quiz</a></button>
+
+          <SelectQuiz />
+         {/*<Link to={'/quiz'}>Take a Quiz</Link>*/}
         </div>
       </div>
     )

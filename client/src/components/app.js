@@ -4,6 +4,7 @@ import * as Cookies from 'js-cookie';
 import QuestionPage from './question-page';
 import LoginPage from './login-page';
 import Dashboard from './dashboard';
+import { connect } from 'react-redux';
 
 class App extends React.Component {
   constructor(props) {
@@ -41,12 +42,17 @@ class App extends React.Component {
   }
 
   render() {
-    if (!this.state.currentUser) {
-      return <LoginPage />;
+    if (this.state.currentUser) {
+      if(this.props.userQuizChoice){
+        return <QuestionPage />
+      }
+      return <Dashboard />;
     }
-
-    return <QuestionPage />;
+    return <LoginPage />;
   }
 }
+const mapStateToProps = state => ({
+  userQuizChoice: state.userQuizChoice,
+})
 
-export default App;
+export default connect(mapStateToProps)(App);
