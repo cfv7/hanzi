@@ -11,6 +11,7 @@ const quizItemSchema = mongoose.Schema({
   meaning: {type: String, required: true},
   hint: {type: String},
   pinyin: {type: String, required: true},
+  category: {type: String, required: true}
 });
 
 const User = mongoose.model('users', userSchema);
