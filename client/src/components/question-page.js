@@ -1,12 +1,13 @@
 import React from 'react';
 import * as Cookies from 'js-cookie';
 import { connect } from 'react-redux';
-import { getQuestions, submitAnswer, flipCard, nextCard, disableToggle, addToIncorrect, addToCorrect, getUserInfo, addToTotalScore } from '../actions';
+import { submitAnswer, flipCard, nextCard, disableToggle, addToIncorrect, addToCorrect, getUserInfo, addToTotalScore } from '../actions';
 import FrontCard from './front-card';
 import BackCard from './back-card';
 import ScoreCounter from './score-counter';
 import Header from './header';
 import './question-page.css';
+import {reset} from 'redux-form';
 
 
 class QuestionPage extends React.Component {
@@ -15,7 +16,6 @@ class QuestionPage extends React.Component {
   }
  
   componentDidMount() {
-    this.props.dispatch(getQuestions())
     this.props.dispatch(getUserInfo())
   }
 
@@ -24,7 +24,8 @@ class QuestionPage extends React.Component {
     this.compareValues(this.input.value);
     let toggleValue = this.props.disableToggle
     this.props.dispatch(disableToggle(!toggleValue));
-    this.input.value = '';
+    event.target.value= '';
+    this.props.dispatch(reset('search-bar'))
   }
   compareValues(input) {
     let value = input.toLowerCase();
@@ -102,7 +103,12 @@ class QuestionPage extends React.Component {
                       Click the card</p>
                 </div>
                 <form onSubmit={e => this.handleSubmit(e)}>
-                    <input className="input" placeholder="meaning" ref={input => this.input = input} />
+                    <input 
+                      name="search-bar"
+                      className="input" 
+                      placeholder="Enter answer" 
+                      ref={input => this.input = input} 
+                    />
                     <input className="submit-btn" type="submit" />
                 </form>
 
