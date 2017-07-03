@@ -19,19 +19,6 @@ p {
 }
 
 /* ==========================	
-  LOGOUT (HEADER)
-=========================== */	
-.log-out {
-    align-items: center;
-    font-size: 10px;
-    display: block;
-}
-
-.logout-btn {
-    margin-left: 10px
-}
-
-/* ==========================	
   QUESTION CONTAINER
 =========================== */
 
@@ -116,13 +103,15 @@ p {
 }
 
 .submit-btn {
-    color: #2e4057;
-    background-color: #fff;
-    height: 30px;
+    color: white;
+     padding: 20px 40px;
+    background-color: #BD1E1E;
     margin-top: 30px;
     border: 2px solid #A1CCA5;
     border-radius: 6px;
-    width: 80%
+    width: 80%;
+    font-size: larger;
+
 }
 
 .submit-btn p{
@@ -132,13 +121,13 @@ p {
 }
 
 .input {
-    color: #2e4057;
-    text-align: center;
     width: 200px;
     height: 40px;
+    text-align: center;
+    /*color: #2e4057;
     border: 2px solid #2e4057;
     margin-top: 20px;
-    border-radius: 6px;
+    border-radius: 6px;*/
 }
 
 
