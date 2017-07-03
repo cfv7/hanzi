@@ -1,12 +1,13 @@
 import React from 'react';
 import * as Cookies from 'js-cookie';
 import { connect } from 'react-redux';
-import { getQuestions, submitAnswer, flipCard, nextCard, disableToggle, addToIncorrect, addToCorrect, getUserInfo, addToTotalScore } from '../actions';
+import { submitAnswer, flipCard, nextCard, disableToggle, addToIncorrect, addToCorrect, getUserInfo, addToTotalScore } from '../actions';
 import FrontCard from './front-card';
 import BackCard from './back-card';
 import ScoreCounter from './score-counter';
 import Header from './header';
 import './question-page.css';
+import {reset} from 'redux-form';
 
 
 class QuestionPage extends React.Component {
@@ -15,7 +16,6 @@ class QuestionPage extends React.Component {
   }
  
   componentDidMount() {
-    this.props.dispatch(getQuestions())
     this.props.dispatch(getUserInfo())
   }
 
@@ -24,7 +24,8 @@ class QuestionPage extends React.Component {
     this.compareValues(this.input.value);
     let toggleValue = this.props.disableToggle
     this.props.dispatch(disableToggle(!toggleValue));
-    this.input.value = '';
+    event.target.value= '';
+    this.props.dispatch(reset('search-bar'))
   }
   compareValues(input) {
     let value = input.toLowerCase();
@@ -70,10 +71,14 @@ class QuestionPage extends React.Component {
     let card;
     if (this.props.currentQuestion) {
       if (!this.props.isFlipped) {
-        card = <FrontCard cardInfo={this.props.currentQuestion} />
+        card = <div onClick={() => this.handleFlipBtn()}>
+                <FrontCard cardInfo={ this.props.currentQuestion} />
+              </div>
       }
       else if (this.props.isFlipped) {
-        card = <BackCard cardInfo={this.props.currentQuestion} />
+        card =  <div onClick={() => this.handleFlipBtn()}> 
+                  <BackCard cardInfo={this.props.currentQuestion} onClick={() => this.handleFlipBtn()} />
+                </div>
       }
     }
     // if(this.props.nextCard === undefined) return this.
@@ -89,21 +94,21 @@ class QuestionPage extends React.Component {
                 {/*<h2 className="question-title">Question #: {this.props.correct + this.props.incorrect}</h2>*/}
                 <div className="question-info">
                     <h2>{this.props.userQuizChoice}</h2>
-                    <div>
                       <ScoreCounter 
                         correct={this.props.correct} 
                         incorrect={this.props.incorrect} 
                       />
                       {card}
-                    </div>
+                      <p><span id="card-help">Need Help?</span><br /> 
+                      Click the card</p>
                 </div>
-                
-                <div onClick={() => this.handleFlipBtn()} className="card-container flip-btn">
-                <p>cheat?</p>
-                </div>
-
                 <form onSubmit={e => this.handleSubmit(e)}>
-                    <input className="input" placeholder="meaning" ref={input => this.input = input} />
+                    <input 
+                      name="search-bar"
+                      className="input" 
+                      placeholder="Enter answer" 
+                      ref={input => this.input = input} 
+                    />
                     <input className="submit-btn" type="submit" />
                 </form>
 

@@ -9,7 +9,7 @@ export function Header(props) {
         <div className="log-out">
           {props.userInfo.displayName}
           <br/>
-          <a className=""href="/api/auth/logout">log out</a>
+          <a className="logout-btn"href="/api/auth/logout">log out</a>
         </div>
       )
     }

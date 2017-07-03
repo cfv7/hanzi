@@ -1,18 +1,27 @@
 import React from 'react';
-import { updateUserQuizChoice } from '../actions';
+import { updateUserQuizChoice, getQuestions } from '../actions';
 import { connect } from 'react-redux';
 
 export class SelectQuiz extends React.Component{
   handleQuizChoice(event){
     event.preventDefault();
-    console.log(event.target.value);
-    this.props.dispatch(updateUserQuizChoice(event.target.value));
+    let quizChoice = event.target.value;
+    this.props.dispatch(updateUserQuizChoice(quizChoice));
+    this.props.dispatch(getQuestions(quizChoice))
   }
   render(){
     return(
-      <button  value="General Quiz" onClick={(e)=> this.handleQuizChoice(e)}>
-        General Quiz
-      </button>
+      <div className="select-quiz-container">
+        <button  value="general" onClick={(e)=> this.handleQuizChoice(e)}>
+          General Quiz
+        </button><br />
+        <button  value="numbers" onClick={(e)=> this.handleQuizChoice(e)}>
+          Numbers
+        </button>
+         <button  value="navigation" onClick={(e)=> this.handleQuizChoice(e)}>
+          Navigation
+        </button>
+    </div>
     )
   }
 }

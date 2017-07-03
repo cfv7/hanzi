@@ -112,8 +112,9 @@ export const getUserInfo = () => dispatch => {
   });
 }
 
-export const getQuestions = () => dispatch => {
+export const getQuestions = (quizChoice) => dispatch => {
   const accessToken = Cookies.get('accessToken');
+  console.log('QuizCHOICE', quizChoice);
   fetch('/api/questions', {
     headers: {
       'Authorization': `Bearer ${accessToken}`
@@ -124,7 +125,13 @@ export const getQuestions = () => dispatch => {
     }
     return res.json();
   }).then(questions => {
-    let q = new Queue(questions);
+    let array = [];
+    questions.forEach(question => {
+      if(question.category === quizChoice) {
+        array.push(question);
+      }
+    });
+    let q = new Queue(array);
     dispatch(getQuestionsSuccess(q))
     console.log(questions)
   });

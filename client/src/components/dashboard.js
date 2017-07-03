@@ -1,11 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import * as Cookies from 'js-cookie';
 import './question-page.css';
 import './dashboard.css';
 import './header.css'
 import Header from './header.js';
 import QuestionPage from './question-page';
-import SelectQuiz from './select-quiz'
+import SelectQuiz from './select-quiz';
+import { getUserInfo }from '../actions';
 export default class Dashboard extends React.Component{
+  constructor(props){
+    super(props);
+  }
+  componentDidMount(){
+    this.props.dispatch(getUserInfo());
+  }
   render(){
     return(
       <div className="dashboard-container">
