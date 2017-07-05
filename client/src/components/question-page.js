@@ -79,7 +79,7 @@ class QuestionPage extends React.Component {
                 </div>
       }
     }
-    // if(this.props.nextCard === undefined) return this.
+    if(this.props.nextCard === undefined) return 
     if (this.props.correct >= 10) return alert('game over')
     if (!this.props.questions) { return <div>There are no questions...</div> };
 

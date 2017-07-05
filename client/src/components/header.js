@@ -2,30 +2,31 @@ import React from 'react';
 import { logOut, signOut } from '../actions'
 import { connect } from 'react-redux';
 
+
 export function Header(props) {
   function getUserName(){
     if(props.userInfo){
       return(
         <div>
-          <div className="return-dash">
+          {/*<div className="return-dash">
             <br/>
 
-          </div>
-          <div className="log-out">
+          </div>*/}
+          <div className="user-box">
             {props.userInfo.displayName}
             <br/>
-            <a 
-              className="logout-btn"
-              href="/api/auth/logout"
-            >
-              log out
-            </a>
             <a 
               className="return-btn"
               href="/"
             >
-              return
-            </a>            
+              <i className="fa fa-home" aria-hidden="true" title="dashboard" alt="home button"></i>
+            </a>    
+            <a 
+              className="logout-btn"
+              href="/api/auth/logout"
+            >
+              <i className="fa fa-sign-out" aria-hidden="true" title="logout" alt="logout button"></i>
+            </a>        
           </div>
         </div>
       )
