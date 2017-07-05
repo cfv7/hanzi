@@ -5,15 +5,13 @@ import {connect} from 'react-redux';
 class IncorrectCard extends React.Component{
     render(){
     return(
-      <div className="card-container">
+      <div className="feedback-card-container">
         <div className="incorrect-card">
-          <div className="info-container">
-            <p className="meaning">
-              Incorrect. <br />
-              The correct answer was:
+            <p className="feedback">
+              <strong>Incorrect. </strong><br />
+              The correct answer was:<br/>
               {this.props.cardInfo.meaning}
             </p>
-          </div>
         </div>
       </div>
     )

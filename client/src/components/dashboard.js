@@ -8,7 +8,7 @@ import Header from './header.js';
 import QuestionPage from './question-page';
 import SelectQuiz from './select-quiz';
 import { getUserInfo }from '../actions';
-export default class Dashboard extends React.Component{
+export class Dashboard extends React.Component{
   constructor(props){
     super(props);
   }
@@ -33,3 +33,7 @@ export default class Dashboard extends React.Component{
     )
   }
 }
+const mapStateToProps = state => ({
+
+})
+export default connect(mapStateToProps)(Dashboard);

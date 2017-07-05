@@ -2,7 +2,8 @@ import {
   SUBMIT_ANSWER, NEW_GAME, TOGGLE_INFO_MODAL,
   GET_QUESTIONS_SUCCESS, FLIP_CARD, NEXT_CARD,
   DISABLE_TOGGLE, ADD_TO_CORRECT, ADD_TO_INCORRECT, 
-  LOG_OUT, GET_USER_INFO_SUCCESS, ADD_TO_TOTAL_SCORE, UPDATE_USER_QUIZ_CHOICE
+  LOG_OUT, GET_USER_INFO_SUCCESS, ADD_TO_TOTAL_SCORE, 
+  UPDATE_USER_QUIZ_CHOICE, UPDATE_FEEDBACK
 } from './actions';
 
 import Queue, {swapFirstAndLast, sendBack} from './queue';
@@ -80,6 +81,11 @@ const reducer = (state = initialState, action) => {
       incorrect: action.incorrect,
       questions: repeatCard,
       currentQuestion: repeatCard.first.data,
+      feedback: action.feedback
+    })
+  }
+  if (action.type === UPDATE_FEEDBACK) {
+    return Object.assign({}, state, {
       feedback: action.feedback
     })
   }

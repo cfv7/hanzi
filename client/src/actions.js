@@ -67,6 +67,12 @@ export const addToIncorrect = (incorrect) => ({
   incorrect
 })
 
+export const UPDATE_FEEDBACK = 'UPDATE_FEEDBACK';
+export const updateFeedback = (feedback) => ({
+  type: UPDATE_FEEDBACK,
+  feedback
+})
+
 
 
 export const ADD_TO_TOTAL_SCORE = 'ADD_TO_TOTAL_SCORE';

@@ -6,11 +6,11 @@ import {connect} from 'react-redux';
 class CorrectCard extends React.Component{
   render(){
     return(
-        <div className="card-container">
+        <div className="feedback-card-container">
           <div className="correct-card">
-            <h4 className="feedback">
-              CORRECT
-            </h4>
+            <p className="feedback">
+              Correct
+            </p>
           </div>
         </div>
     )
