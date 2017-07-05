@@ -6,10 +6,27 @@ export function Header(props) {
   function getUserName(){
     if(props.userInfo){
       return(
-        <div className="log-out">
-          {props.userInfo.displayName}
-          <br/>
-          <a className="logout-btn"href="/api/auth/logout">log out</a>
+        <div>
+          <div className="return-dash">
+            <br/>
+
+          </div>
+          <div className="log-out">
+            {props.userInfo.displayName}
+            <br/>
+            <a 
+              className="logout-btn"
+              href="/api/auth/logout"
+            >
+              log out
+            </a>
+            <a 
+              className="return-btn"
+              href="/"
+            >
+              return
+            </a>            
+          </div>
         </div>
       )
     }
@@ -20,7 +37,7 @@ export function Header(props) {
       <div className="header-title-container">
         <span className="header-title">hànzì</span>
       </div>
-      {getUserName()}
+        <span id="username">{getUserName()}</span>
     </div>
 
   )

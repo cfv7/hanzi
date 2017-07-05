@@ -7,7 +7,6 @@ import BackCard from './back-card';
 import ScoreCounter from './score-counter';
 import Header from './header';
 import './question-page.css';
-import {reset} from 'redux-form';
 
 
 class QuestionPage extends React.Component {
@@ -25,7 +24,6 @@ class QuestionPage extends React.Component {
     let toggleValue = this.props.disableToggle
     this.props.dispatch(disableToggle(!toggleValue));
     event.target.value= '';
-    this.props.dispatch(reset('search-bar'))
   }
   compareValues(input) {
     let value = input.toLowerCase();
@@ -109,17 +107,20 @@ class QuestionPage extends React.Component {
                       placeholder="Enter answer" 
                       ref={input => this.input = input} 
                     />
-                    <input className="submit-btn" type="submit" />
+                    <input 
+                      className="submit-btn" 
+                      type="submit" 
+                    />
                 </form>
 
-                {/*</ul>*/}
-            </div>
+          </div>
         </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
+  value: state.value,
   questions: state.questions,
   index: state.index,
   isFlipped: state.isFlipped,
