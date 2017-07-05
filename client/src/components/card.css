@@ -1,0 +1,22 @@
+/* ==========================	
+ CORRECT CARD 
+=========================== */
+.correct-card, .incorrect-card{
+    margin-right: 50px;
+    margin-left: 50px;
+    width: 200px;
+    height: 200px;
+    border-radius: 4px;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, .12), 0 8px 8px 0 rgba(0, 0, 0, .24);
+    text-align: center;
+}
+.correct-card {
+    background-color: green;
+}
+.incorrect-card {
+    background-color: red;
+}
+.feedback{
+  text-align: center;
+  vertical-align: middle;
+}

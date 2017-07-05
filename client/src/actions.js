@@ -67,6 +67,8 @@ export const addToIncorrect = (incorrect) => ({
   incorrect
 })
 
+
+
 export const ADD_TO_TOTAL_SCORE = 'ADD_TO_TOTAL_SCORE';
 export const addToTotalScore = (totalScore) => ({
   type: ADD_TO_TOTAL_SCORE,

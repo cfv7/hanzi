@@ -7,6 +7,8 @@ import BackCard from './back-card';
 import ScoreCounter from './score-counter';
 import Header from './header';
 import './question-page.css';
+import CorrectCard from './correct-card';
+import IncorrectCard from './incorrect-card';
 
 
 class QuestionPage extends React.Component {
@@ -32,13 +34,11 @@ class QuestionPage extends React.Component {
     if(value === this.props.currentQuestion.meaning){
         let newValue = this.props.correct;
         this.props.dispatch(addToCorrect(++newValue));
-        window.alert("CORRECT");
         this.props.dispatch(++newTotal);
     }
     else{
         let newValue = this.props.incorrect;
         this.props.dispatch(addToIncorrect(++newValue));
-        window.alert(`INCORRECT! The correct answer was ${this.props.currentQuestion.meaning}`);
         this.props.dispatch(++newTotal);
     }
     this.props.dispatch(submitAnswer(value));
@@ -64,6 +64,14 @@ class QuestionPage extends React.Component {
   }
   
   render() {
+    let feedback;
+    if (this.props.feedback === 'Correct'){
+      feedback = <CorrectCard  />
+    }
+    else if(this.props) {
+      feedback = <IncorrectCard cardInfo={ this.props.currentQuestion} />
+    }
+    
     let next = this.props.disableToggle;
     let submit = !this.props.disableToggle;
     let card;
@@ -79,7 +87,7 @@ class QuestionPage extends React.Component {
                 </div>
       }
     }
-    if(this.props.nextCard === undefined) return 
+    // if(this.props.nextCard === undefined) return 
     if (this.props.correct >= 10) return alert('game over')
     if (!this.props.questions) { return <div>There are no questions...</div> };
 
@@ -97,6 +105,7 @@ class QuestionPage extends React.Component {
                         incorrect={this.props.incorrect} 
                       />
                       {card}
+                      {feedback}
                       <p><span id="card-help">Need Help?</span><br /> 
                       Click the card</p>
                 </div>
@@ -129,7 +138,8 @@ const mapStateToProps = state => ({
   incorrect: state.incorrect,
   currentQuestion: state.currentQuestion,
   totalScore: state.totalScore,
-  userQuizChoice: state.userQuizChoice
+  userQuizChoice: state.userQuizChoice,
+  feedback: state.feedback
 })
 
 export default connect(mapStateToProps)(QuestionPage)

@@ -19,7 +19,8 @@ const initialState = {
   correct: 0,
   incorrect: 0,
   totalScore: 0,
-  userQuizChoice: null
+  userQuizChoice: null,
+  feedback: null,
 }
 
 const reducer = (state = initialState, action) => {
@@ -67,7 +68,8 @@ const reducer = (state = initialState, action) => {
     return Object.assign({}, state, {
       questions: changedQ,
       currentQuestion: changedQ.first.data,
-      correct: action.correct 
+      correct: action.correct,
+      feedback: action.feedback 
     })
   }
   if (action.type === ADD_TO_INCORRECT) {
@@ -77,7 +79,8 @@ const reducer = (state = initialState, action) => {
     return Object.assign({}, state, {
       incorrect: action.incorrect,
       questions: repeatCard,
-      currentQuestion: repeatCard.first.data
+      currentQuestion: repeatCard.first.data,
+      feedback: action.feedback
     })
   }
   if (action.type === ADD_TO_TOTAL_SCORE){
