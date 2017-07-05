@@ -1,12 +1,15 @@
 import React from 'react';
 import * as Cookies from 'js-cookie';
 import { connect } from 'react-redux';
-import { submitAnswer, flipCard, nextCard, disableToggle, addToIncorrect, addToCorrect, getUserInfo, addToTotalScore } from '../actions';
+import { submitAnswer, flipCard, nextCard, disableToggle, addToIncorrect, addToCorrect, getUserInfo, addToTotalScore, updateFeedback } from '../actions';
 import FrontCard from './front-card';
 import BackCard from './back-card';
 import ScoreCounter from './score-counter';
 import Header from './header';
 import './question-page.css';
+import CorrectCard from './correct-card';
+import IncorrectCard from './incorrect-card';
+import DefaultCard from './default-card';
 
 
 class QuestionPage extends React.Component {
@@ -32,14 +35,15 @@ class QuestionPage extends React.Component {
     if(value === this.props.currentQuestion.meaning){
         let newValue = this.props.correct;
         this.props.dispatch(addToCorrect(++newValue));
-        window.alert("CORRECT");
-        this.props.dispatch(++newTotal);
+        // this.props.dispatch(++newTotal);
+        this.props.dispatch(updateFeedback('Correct'));
     }
     else{
+      console.log('THIS EFFIN WORKS!!!!')
         let newValue = this.props.incorrect;
         this.props.dispatch(addToIncorrect(++newValue));
-        window.alert(`INCORRECT! The correct answer was ${this.props.currentQuestion.meaning}`);
-        this.props.dispatch(++newTotal);
+        // this.props.dispatch(++newTotal);
+        this.props.dispatch(updateFeedback('Incorrect'));
     }
     this.props.dispatch(submitAnswer(value));
   }
@@ -64,6 +68,17 @@ class QuestionPage extends React.Component {
   }
   
   render() {
+    let feedback;
+    if (this.props.feedback === 'Correct'){
+      feedback = <CorrectCard  />
+    }
+    else if(this.props.feedback === 'Incorrect') {
+      feedback = <IncorrectCard cardInfo={ this.props.currentQuestion} />
+    }
+    else {
+      feedback = <DefaultCard />;
+    }
+    
     let next = this.props.disableToggle;
     let submit = !this.props.disableToggle;
     let card;
@@ -78,8 +93,9 @@ class QuestionPage extends React.Component {
                   <BackCard cardInfo={this.props.currentQuestion} onClick={() => this.handleFlipBtn()} />
                 </div>
       }
+
     }
-    if(this.props.nextCard === undefined) return 
+    // if(this.props.nextCard === undefined) return 
     if (this.props.correct >= 10) return alert('game over')
     if (!this.props.questions) { return <div>There are no questions...</div> };
 
@@ -96,6 +112,7 @@ class QuestionPage extends React.Component {
                         correct={this.props.correct} 
                         incorrect={this.props.incorrect} 
                       />
+                      {feedback}
                       {card}
                       <p><span id="card-help">Need Help?</span><br /> 
                       Click the card</p>
@@ -129,7 +146,8 @@ const mapStateToProps = state => ({
   incorrect: state.incorrect,
   currentQuestion: state.currentQuestion,
   totalScore: state.totalScore,
-  userQuizChoice: state.userQuizChoice
+  userQuizChoice: state.userQuizChoice,
+  feedback: state.feedback
 })
 
 export default connect(mapStateToProps)(QuestionPage)
