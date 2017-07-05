@@ -107,17 +107,20 @@ class QuestionPage extends React.Component {
                       placeholder="Enter answer" 
                       ref={input => this.input = input} 
                     />
-                    <input className="submit-btn" type="submit" />
+                    <input 
+                      className="submit-btn" 
+                      type="submit" 
+                    />
                 </form>
 
-                {/*</ul>*/}
-            </div>
+          </div>
         </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
+  value: state.value,
   questions: state.questions,
   index: state.index,
   isFlipped: state.isFlipped,

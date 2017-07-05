@@ -1,37 +1,61 @@
 /* ==========================	
-  HEADER
+HEADER
 =========================== */	
 
 .header-title-container {
-    display: inline;
+  display: inline;
 }
 
 .header-title {
-    font-family: Rokkitt, serif;
-    font-size: 40px;
+  display: inline;
+  font-family: Rokkitt, serif;
+  font-size: 40px;
 }
 .header-container {
-    color: #BD1E1E;
-    background-color: #99CCFF;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: distribute;
-    justify-content: space-around;
-    margin-bottom: 30px;
-    padding: 10px 0;
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, .12), 0 3px 2px 0 rgba(0, 0, 0, .24)
+  color: #BD1E1E;
+  background-color: #99CCFF;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  margin-bottom: 30px;
+  padding: 10px 0;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, .12), 0 3px 2px 0 rgba(0, 0, 0, .24)
 }
 
 /* ==========================	
-  LOGOUT 
+LOGOUT 
 =========================== */	
 .log-out {
-    align-items: center;
-    font-size: 13px;
-    display: flex;
+  align-items: center;
+  font-size: 13px;
+  display: flex;
 }
 
 .logout-btn {
-    padding-left: 10px
+  padding-left: 10px
+}
+
+/* ==========================	
+RETURN 
+=========================== */	
+.return-dash {
+  align-items: center;
+  font-size: 13px;
+  display: flex;
+}
+
+.return-btn{
+  padding-left: 10px;
+}
+
+/* ==========================	
+USER 
+=========================== */	
+
+ #username p{
+  display: inline;
+  font-family: Rokkitt, serif;
+  font-size: 40px;
 }
