@@ -24,6 +24,9 @@ class QuestionPage extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.compareValues(this.input.value);
+    if(this.props.isFlipped){
+      this.props.dispatch(flipCard());
+    }
     event.target.value= '';
   }
   //Comparison logic can be done in reducer.
