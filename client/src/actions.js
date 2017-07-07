@@ -139,9 +139,8 @@ export const getQuestions = (quizChoice) => dispatch => {
         array.push(question);
       }
     });
-    let q = new Queue(array);
-    dispatch(getQuestionsSuccess(q))
-    console.log(questions)
+    dispatch(getQuestionsSuccess(array))
+    console.log(array)
   });
 }
 

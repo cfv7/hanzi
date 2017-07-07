@@ -39,13 +39,13 @@ const reducer = (state = initialState, action) => {
 
   if (action.type === GET_QUESTIONS_SUCCESS) {
     return Object.assign({}, state, {
-      currentQuestion: action.questions.first.data,
+      currentQuestion: action.questions[0],
       questions: action.questions
     })
   }
   if (action.type === FLIP_CARD) {
     return Object.assign({}, state, {
-      isFlipped: action.isFlipped
+      isFlipped: !state.isFlipped
     })
   }
   if (action.type === NEXT_CARD) {
@@ -64,11 +64,10 @@ const reducer = (state = initialState, action) => {
     });
   }
   if (action.type === ADD_TO_CORRECT) {
-    let changedQ = swapFirstAndLast(state.questions);
-      console.log('ADTOCORRECT', state.questions, changedQ)
+    let swappedQuestion = [state.questions[state.questions.length-1] , ...state.questions.slice(1,-1), state.questions[0]];
     return Object.assign({}, state, {
-      questions: changedQ,
-      currentQuestion: changedQ.first.data,
+      questions: swappedQuestion,
+      currentQuestion: swappedQuestion[0],
       correct: action.correct,
       feedback: action.feedback 
     })

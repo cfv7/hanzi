@@ -24,14 +24,15 @@ class QuestionPage extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.compareValues(this.input.value);
-    let toggleValue = this.props.disableToggle
-    this.props.dispatch(disableToggle(!toggleValue));
     event.target.value= '';
   }
+  //Comparison logic can be done in reducer.
   compareValues(input) {
     let value = input.toLowerCase();
     let newTotal = this.props.totalScore;
     console.log('newTotal', newTotal);
+    // dispatch the value itself to the reducer.
+
     if(value === this.props.currentQuestion.meaning){
         let newValue = this.props.correct;
         this.props.dispatch(addToCorrect(++newValue));
@@ -39,7 +40,6 @@ class QuestionPage extends React.Component {
         this.props.dispatch(updateFeedback('Correct'));
     }
     else{
-      console.log('THIS EFFIN WORKS!!!!')
         let newValue = this.props.incorrect;
         this.props.dispatch(addToIncorrect(++newValue));
         // this.props.dispatch(++newTotal);
@@ -55,14 +55,7 @@ class QuestionPage extends React.Component {
     this.input.value = '';
   }
   handleFlipBtn() {
-  
-    if (this.props.isFlipped === true) {
-      this.props.dispatch(flipCard(false));
-    }
-    else {
-      this.props.dispatch(flipCard(true));
-    }
-
+    this.props.dispatch(flipCard());
   }
   displayFeedback() {
   }
