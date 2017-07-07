@@ -18,6 +18,7 @@ const initialState = {
   totalScore: 0,
   userQuizChoice: null,
   feedback: null,
+  quizLength: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -36,7 +37,8 @@ const reducer = (state = initialState, action) => {
   if (action.type === GET_QUESTIONS_SUCCESS) {
     return Object.assign({}, state, {
       currentQuestion: action.questions[0],
-      questions: action.questions
+      questions: action.questions,
+      quizLength: action.questions.length
     })
   }
   if (action.type === FLIP_CARD) {

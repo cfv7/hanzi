@@ -10,6 +10,7 @@ import './question-page.css';
 import CorrectCard from './correct-card';
 import IncorrectCard from './incorrect-card';
 import DefaultCard from './default-card';
+import ResultsPage from './results-page';
 
 
 class QuestionPage extends React.Component {
@@ -27,7 +28,7 @@ class QuestionPage extends React.Component {
     if(this.props.isFlipped){
       this.props.dispatch(flipCard());
     }
-    event.target.value= '';
+    this.input.value = '';
   }
   //Comparison logic can be done in reducer.
   compareValues(input) {
@@ -49,15 +50,10 @@ class QuestionPage extends React.Component {
     this.props.dispatch(submitAnswer(value));
   }
 
-  handleNextBtn() {
-    let toggleValue = this.props.disableToggle
-    this.props.dispatch(nextCard());
-    this.props.dispatch(disableToggle(!toggleValue));
-    this.input.value = '';
-  }
   handleFlipBtn() {
     this.props.dispatch(flipCard());
   }
+
   displayFeedback() {
   }
   
@@ -76,54 +72,55 @@ class QuestionPage extends React.Component {
     let card;
     if (this.props.currentQuestion) {
       if (!this.props.isFlipped) {
-        card = <div onClick={() => this.handleFlipBtn()}>
-                <FrontCard cardInfo={ this.props.currentQuestion} />
-              </div>
+        card = 
+          <div onClick={() => this.handleFlipBtn()}>
+            <FrontCard cardInfo={ this.props.currentQuestion} />
+          </div>
       }
       else if (this.props.isFlipped) {
-        card =  <div onClick={() => this.handleFlipBtn()}> 
-                  <BackCard cardInfo={this.props.currentQuestion} onClick={() => this.handleFlipBtn()} />
-                </div>
+        card =  
+          <div onClick={() => this.handleFlipBtn()}> 
+            <BackCard cardInfo={this.props.currentQuestion} onClick={() => this.handleFlipBtn()} />
+          </div>
       }
 
     }
-    // if(this.props.nextCard === undefined) return 
-    if (this.props.correct >= 10) return alert('game over')
+    // send user to results-page component once quiz is complete
+    // <ResultsPage />
+    if (this.props.correct >= this.props.quizLength) return <ResultsPage />
     if (!this.props.questions) { return <div>There are no questions...</div> };
 
     return (     
-        <div>
-            <Header />
+      <div>
+          <Header />
 
-            <div className="question-container">
-                {/*<ul className="question-list">*/}
-                {/*<h2 className="question-title">Question #: {this.props.correct + this.props.incorrect}</h2>*/}
-                <div className="question-info">
-                    <h2>{this.props.userQuizChoice}</h2>
-                      <ScoreCounter 
-                        correct={this.props.correct} 
-                        incorrect={this.props.incorrect} 
-                      />
-                      {feedback}
-                      {card}
-                      <p><span id="card-help">Need Help?</span><br /> 
-                      Click the card</p>
-                </div>
-                <form onSubmit={e => this.handleSubmit(e)}>
-                    <input 
-                      name="search-bar"
-                      className="input" 
-                      placeholder="Enter answer" 
-                      ref={input => this.input = input} 
-                    />
-                    <input 
-                      className="submit-btn" 
-                      type="submit" 
-                    />
-                </form>
+          <div className="question-container">
+            <div className="question-info">
+              <h2>{this.props.userQuizChoice}</h2>
+                <ScoreCounter 
+                  correct={this.props.correct} 
+                  incorrect={this.props.incorrect} 
+                />
+                {feedback}
+                {card}
+                <p><span id="card-help">Need Help?</span><br /> 
+                Click the card</p>
+            </div>
+            <form onSubmit={e => this.handleSubmit(e)}>
+              <input 
+                name="search-bar"
+                className="input" 
+                placeholder="Enter answer" 
+                ref={input => this.input = input} 
+              />
+              <input 
+                className="submit-btn" 
+                type="submit" 
+              />
+            </form>
 
-          </div>
         </div>
+      </div>
     );
   }
 }
