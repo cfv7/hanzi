@@ -39,13 +39,11 @@ class QuestionPage extends React.Component {
     if(value === this.props.currentQuestion.meaning){
         let newValue = this.props.correct;
         this.props.dispatch(addToCorrect(++newValue));
-        // this.props.dispatch(++newTotal);
         this.props.dispatch(updateFeedback('Correct'));
     }
     else{
         let newValue = this.props.incorrect;
         this.props.dispatch(addToIncorrect(++newValue));
-        // this.props.dispatch(++newTotal);
         this.props.dispatch(updateFeedback('Incorrect'));
     }
     this.props.dispatch(submitAnswer(value));
@@ -69,14 +67,12 @@ class QuestionPage extends React.Component {
       feedback = <CorrectCard  />
     }
     else if(this.props.feedback === 'Incorrect') {
-      feedback = <IncorrectCard cardInfo={ this.props.currentQuestion} />
+      feedback = <IncorrectCard cardInfo={this.props.lastQuestion} />
     }
     else {
       feedback = <DefaultCard />;
     }
     
-    let next = this.props.disableToggle;
-    let submit = !this.props.disableToggle;
     let card;
     if (this.props.currentQuestion) {
       if (!this.props.isFlipped) {
@@ -141,6 +137,7 @@ const mapStateToProps = state => ({
   correct: state.correct,
   incorrect: state.incorrect,
   currentQuestion: state.currentQuestion,
+  lastQuestion: state.lastQuestion,
   totalScore: state.totalScore,
   userQuizChoice: state.userQuizChoice,
   feedback: state.feedback

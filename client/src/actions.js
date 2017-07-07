@@ -1,7 +1,5 @@
 
 import * as Cookies from 'js-cookie';
-import Queue from './queue';
-console.log('actions ->', Queue);
 
 export const NEW_QUIZ = 'NEW_QUIZ';
 export const newQuiz = () => ({
@@ -73,8 +71,6 @@ export const updateFeedback = (feedback) => ({
   feedback
 })
 
-
-
 export const ADD_TO_TOTAL_SCORE = 'ADD_TO_TOTAL_SCORE';
 export const addToTotalScore = (totalScore) => ({
   type: ADD_TO_TOTAL_SCORE,
@@ -143,12 +139,3 @@ export const getQuestions = (quizChoice) => dispatch => {
     console.log(array)
   });
 }
-
-
-
-
-export const TOGGLE_INFO_MODAL = 'TOGGLE_INFO_MODAL';
-export const toggleInfoModal = () => ({
-  type: TOGGLE_INFO_MODAL
-})
-

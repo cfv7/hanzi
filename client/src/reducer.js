@@ -6,15 +6,11 @@ import {
   UPDATE_USER_QUIZ_CHOICE, UPDATE_FEEDBACK
 } from './actions';
 
-import Queue, {swapFirstAndLast, sendBack} from './queue';
-
-
-console.log(swapFirstAndLast, 'test')
-
 const initialState = {
   value:"",
   index: 0,
   currentQuestion: null,
+  lastQuestion: null,
   isFlipped: false,
   disableToggle: true,
   correct: 0,
@@ -64,22 +60,21 @@ const reducer = (state = initialState, action) => {
     });
   }
   if (action.type === ADD_TO_CORRECT) {
-    let swappedQuestion = [state.questions[state.questions.length-1] , ...state.questions.slice(1,-1), state.questions[0]];
+    let removeCard = [...state.questions.slice(1)]
     return Object.assign({}, state, {
-      questions: swappedQuestion,
-      currentQuestion: swappedQuestion[0],
+      questions: removeCard,
+      currentQuestion: removeCard[0],
       correct: action.correct,
       feedback: action.feedback 
     })
   }
   if (action.type === ADD_TO_INCORRECT) {
-    let repeatCard = state.questions;
-    sendBack(repeatCard, 3);
-    console.log('STATE.QUESTIONS', state.questions);
+    let swappedQuestion = [...state.questions.slice(1), state.questions[0]];
     return Object.assign({}, state, {
+      questions: swappedQuestion,
+      currentQuestion: swappedQuestion[0],
+      lastQuestion: swappedQuestion[swappedQuestion.length-1],
       incorrect: action.incorrect,
-      questions: repeatCard,
-      currentQuestion: repeatCard.first.data,
       feedback: action.feedback
     })
   }
