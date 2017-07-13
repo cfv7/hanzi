@@ -90,9 +90,8 @@ p {
 }
 
 .flip-btn {
-    color: #2e4057;
+    /*color: #2e4057;*/
     border-radius: 6px;
-    border: 2px solid #A1CCA5;
     background: #fff;
     position: absolute;
     text-align: center;
@@ -104,14 +103,12 @@ p {
 
 .submit-btn {
     color: white;
-     padding: 20px 40px;
+    padding: 20px 40px;
     background-color: #BD1E1E;
     margin-top: 30px;
-    border: 2px solid #A1CCA5;
     border-radius: 6px;
     width: 80%;
     font-size: larger;
-
 }
 
 .submit-btn p{
