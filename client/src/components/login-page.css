@@ -121,6 +121,18 @@
   .login-title h1{
     margin-left: 0;
   }
+  .login-logo {
+    border: 6px solid #BD1E1E;
+    height: 75px;
+    width: 71px;
+    border-radius: 50%;
+    text-align: center;
+    background: ghostwhite;
+  }
+  .login-header-container{
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 }
 
 @media only screen and (min-width: 321px) and (max-width: 768px) {
