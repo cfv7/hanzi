@@ -8,10 +8,6 @@ export function Header(props) {
     if(props.userInfo){
       return(
         <div>
-          {/*<div className="return-dash">
-            <br/>
-
-          </div>*/}
           <div className="user-box">
             {props.userInfo.displayName}
             <br/>
@@ -19,13 +15,23 @@ export function Header(props) {
               className="return-btn"
               href="/"
             >
-              <i className="fa fa-home" aria-hidden="true" title="dashboard" alt="home button"></i>
+              <i 
+                className="fa fa-home" 
+                aria-hidden="true" 
+                title="dashboard" 
+                alt="home button"
+              ></i>
             </a>    
             <a 
               className="logout-btn"
               href="/api/auth/logout"
             >
-              <i className="fa fa-sign-out" aria-hidden="true" title="logout" alt="logout button"></i>
+              <i 
+              className="fa fa-sign-out" 
+              aria-hidden="true" 
+              title="logout" 
+              alt="logout button"
+              ></i>
             </a>        
           </div>
         </div>
