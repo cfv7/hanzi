@@ -15,8 +15,8 @@ export class SelectQuiz extends React.Component{
   render(){
     return(
       <div className="select-quiz-container">
-        <button value="general" onClick={(e)=> this.handleQuizChoice(e)}>
-          <img src={require('../../../media/art_general-quiz.png')} className="quiz-item general" alt="general quiz"/>
+        <button value="nature" onClick={(e)=> this.handleQuizChoice(e)}>
+          <img src={require('../../../media/art_general-quiz.png')} className="quiz-item general" alt="nature quiz"/>
         </button>
         <button className="middle-quiz-choice " value="numbers" onClick={(e)=> this.handleQuizChoice(e)}>
           <img src={require('../../../media/art_numbers-quiz.png')} className="quiz-item numbers" alt="numbers quiz"/>

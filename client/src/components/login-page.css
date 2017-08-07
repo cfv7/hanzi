@@ -21,7 +21,7 @@
   margin: 0 auto;
 }
 .login-logo img {
-  height: 400px;
+  width: 100%;
 }
 .login-pattern {
   height: 100px;
@@ -92,7 +92,7 @@
     font-family: 'Open Sans';
     transition: all 0.3s ease 0s;
     text-decoration: none;
-    padding: 20px 40px;
+    padding: 20px 30px;
     text-align: center;
 }
 .login-button:hover {
@@ -102,47 +102,6 @@
 /* ==========================	
   MEDIA QUERIES
 =========================== */	
-
-@media only screen and (min-width: 0px) and (max-width: 320px) {
-  .login-title h1{
-    font-size: 3em;
-  } 
-  .intro p {
-    font-size: 1em;
-    margin-left: 1.5em;
-    margin-right: 1.5em;
-  }
-  .button-container {
-    width: 100%;
-  }
-  .login-logo-script {
-    font-size: 25px;
-  }
-  .login-logo {
-    border: 6px solid #BD1E1E;
-    height: 75px;
-    width: 71px;
-    border-radius: 50%;
-  }
-  .login-title h1{
-    margin-left: 0;
-  }
-  .login-logo {
-    border: 6px solid #BD1E1E;
-    height: 75px;
-    width: 71px;
-    border-radius: 50%;
-    text-align: center;
-    background: ghostwhite;
-  }
-  .login-header-container{
-    padding:0;
-    margin: 0;
-  }
-  .submit-btn {
-    -webkit-appearance: none;
-  }
-}
 
 @media only screen and (min-width: 321px) and (max-width: 768px) {
   .login-title h1{
