@@ -1,6 +1,6 @@
 # Hanzi
 
-![hanzi](https://github.com/cfv7/hanzi/blob/master/media/question-page.png)
+![hanzi](http://colin.red/media/hanzi.png)
 
 ## Overview
 Learning a new language can be daunting and retaining vocabulary is of utmost importance. As a result we built Hanzi, a flashcard app that uses spaced-repetition algorithms to improve long-term retention of Chinese characters. Enjoy!
