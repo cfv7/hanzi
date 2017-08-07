@@ -9,8 +9,8 @@ export function Header(props) {
       return(
         <div>
           <div className="user-box">
-            {props.userInfo.displayName}
-            <br/>
+            <div className="user-title">{props.userInfo.displayName}
+            <br/></div>
             <a 
               className="return-btn"
               href="/"

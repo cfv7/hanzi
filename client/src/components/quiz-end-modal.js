@@ -9,7 +9,7 @@ class QuizEndModal extends React.Component{
       <div className="modal-container">
         <div className="feedback-card">
           <p className="feedback">
-            Thank you for playing Hanzi. You were correct {this.props.correct} out of {this.props.correct + this.props.incorrect} times.
+            Thank you for playing Hanzi! You were correct {this.props.correct} out of {this.props.correct + this.props.incorrect} times.
           </p>
           <div><a className="return-btn" href="/">Return to Dashboard
             </a>

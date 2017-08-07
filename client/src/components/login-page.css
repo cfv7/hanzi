@@ -92,7 +92,7 @@
     font-family: 'Open Sans';
     transition: all 0.3s ease 0s;
     text-decoration: none;
-    padding: 20px 30px;
+    padding: 20px 40px;
     text-align: center;
 }
 .login-button:hover {
@@ -111,5 +111,8 @@
     font-size: 1.5em;
     margin-left: 2em;
     margin-right: 2em;
+  }
+  .login-button {
+    padding: 20px 30px;
   }
 }
