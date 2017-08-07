@@ -7,22 +7,17 @@ export default function LoginPage() {
       <div className="login-header-wrapper">
         <article className="login-header-container">
             <div className="login-logo"> 
-              <p className="login-logo-script"> 汉字 </p>
-            </div>
-            <div className="login-title">  
-              <h1>hànzì</h1>
+              <img src={require('../../../media/login-logo02.png')} />
             </div>
         </article>
-      </div>
-
-      <article className="intro">
-        <p> 
-          Hànzì is a simple spaced repetition game for learning Chinese characters. 
-        </p>
+        <article className="intro">
         <div className="button-container">
             <a className="login-button" href={'/api/auth/google'}>Google Login</a>
         </div>
       </article>      
+      </div>
+      <div className="login-pattern-topper"></div>
+      <div className="login-pattern"></div>
   </section>  
   )
 }

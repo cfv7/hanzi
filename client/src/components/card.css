@@ -12,6 +12,7 @@
 }
 .default-card {
   box-shadow: none;
+  background-color: #FBFADF;
 }
 
 .correct-card {
@@ -20,9 +21,7 @@
 .incorrect-card {
     background-color: #BD1E1E;
 }
-.default-card {
-  background-color: #fff; 
-}
+
 .incorrect-card .feedback{
   padding-top: 5px;
   text-align: center;

@@ -19,11 +19,16 @@ export class Dashboard extends React.Component{
     return(
       <div className="dashboard-container">
         <Header />
+        <div className="scales-bottomer"></div>
         {/*<div className="score-board">
           <h2>Score Board</h2>
           <p>Score Total:  #</p>
         </div>*/}
         <div className="dashboard-info">
+          <p>Welcome to Hanzi, The fun way to  learn mandarin!
+Become a master of mandarin by playing a series of
+spaced repetition that are sure to advance your
+language skills!</p>
           <h2>Quiz Category</h2>
 
           <SelectQuiz />

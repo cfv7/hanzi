@@ -36,7 +36,7 @@ export function Header(props) {
   return (
     <div className="header-container">
       <div className="header-title-container">
-        <span className="header-title">hànzì</span>
+        <img src={require('../../../media/header-logo.png')} />
       </div>
         <span id="username">{getUserName()}</span>
     </div>

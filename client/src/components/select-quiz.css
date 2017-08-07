@@ -1,0 +1,23 @@
+.quiz-item{
+  background-color: white;
+  border: 2px solid #88B221;
+}
+.select-quiz-container{
+  width: 780px;
+
+}
+.middle-quiz-choice{
+  margin: 0 15px 0 15px;
+}
+.select-quiz-container img {
+  border: 1px solid #88B221;
+}
+.select-quiz-container img:hover {
+  background-color: #F5F883;
+}
+.select-quiz-container button {
+  border: 0;
+  padding: 0;
+  
+
+}
