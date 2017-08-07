@@ -67,3 +67,13 @@ USER
   display: inline;
   font-size: xx-large;
 }
+
+
+@media only screen and (min-width: 0px) and (max-width: 600px) {
+.header-title {
+  font-size: 20px;
+}
+.user-title{
+  display: none;
+}
+}

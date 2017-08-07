@@ -25,10 +25,12 @@ export class Dashboard extends React.Component{
           <p>Score Total:  #</p>
         </div>*/}
         <div className="dashboard-info">
-          <p>Welcome to Hanzi, The fun way to  learn mandarin!
-Become a master of mandarin by playing a series of
-spaced repetition that are sure to advance your
-language skills!</p>
+          <p>
+            Welcome to Hanzi, the fun way to learn Mandarin!<br />
+            Become a master of Mandarin by challenging yourself with a series of
+            spaced repetition flashcards that are sure to advance your
+            language skills!
+          </p>
           <h2>Quiz Category</h2>
 
           <SelectQuiz />
