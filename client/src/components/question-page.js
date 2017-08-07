@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Cookies from 'js-cookie';
 import { connect } from 'react-redux';
-import { submitAnswer, flipCard, nextCard, disableToggle, addToIncorrect, addToCorrect, getUserInfo, addToTotalScore, updateFeedback } from '../actions';
+import { submitAnswer, flipCard, nextCard, disableToggle, addToIncorrect, addToCorrect, getUserInfo, addToTotalScore, updateFeedback , displayModal} from '../actions';
 import FrontCard from './front-card';
 import BackCard from './back-card';
 import ScoreCounter from './score-counter';
@@ -10,7 +10,7 @@ import './question-page.css';
 import CorrectCard from './correct-card';
 import IncorrectCard from './incorrect-card';
 import DefaultCard from './default-card';
-import ResultsPage from './results-page';
+import QuizEndModal from './quiz-end-modal';
 
 
 class QuestionPage extends React.Component {
@@ -87,7 +87,11 @@ class QuestionPage extends React.Component {
     }
     // send user to results-page component once quiz is complete
     // <ResultsPage />
-    if (this.props.correct >= this.props.quizLength) return <ResultsPage />
+    if (this.props.correct === this.props.quizLength){
+      console.log(this.props.quizLength)
+      this.props.dispatch(displayModal(true));
+      return <QuizEndModal />
+    }
     if (!this.props.questions) { return <div>There are no questions...</div> };
 
     return (     
@@ -137,7 +141,8 @@ const mapStateToProps = state => ({
   lastQuestion: state.lastQuestion,
   totalScore: state.totalScore,
   userQuizChoice: state.userQuizChoice,
-  feedback: state.feedback
+  feedback: state.feedback,
+  quizLength: state.quizLength
 })
 
 export default connect(mapStateToProps)(QuestionPage)

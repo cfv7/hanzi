@@ -54,7 +54,7 @@ p {
     margin-left: 50px;
     width: 200px;
     height: 200px;
-    background-color: #99CCFF;
+    background-color: white;
     border-radius: 4px;
     box-shadow: 0 0 8px 0 rgba(0, 0, 0, .12), 0 8px 8px 0 rgba(0, 0, 0, .24);
     text-align: center;
@@ -104,7 +104,7 @@ p {
 .submit-btn {
     color: white;
     padding: 20px 40px;
-    background-color: #BD1E1E;
+    background-color: #88B221;
     margin-top: 30px;
     border-radius: 6px;
     width: 80%;

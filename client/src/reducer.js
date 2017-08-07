@@ -3,7 +3,7 @@ import {
   GET_QUESTIONS_SUCCESS, FLIP_CARD, NEXT_CARD,
   DISABLE_TOGGLE, ADD_TO_CORRECT, ADD_TO_INCORRECT, 
   LOG_OUT, GET_USER_INFO_SUCCESS, ADD_TO_TOTAL_SCORE, 
-  UPDATE_USER_QUIZ_CHOICE, UPDATE_FEEDBACK
+  UPDATE_USER_QUIZ_CHOICE, UPDATE_FEEDBACK, DISPLAY_MODAL
 } from './actions';
 
 const initialState = {
@@ -18,7 +18,8 @@ const initialState = {
   totalScore: 0,
   userQuizChoice: null,
   feedback: null,
-  quizLength: null
+  quizLength: null,
+  isModalOn: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -88,6 +89,11 @@ const reducer = (state = initialState, action) => {
   if (action.type === ADD_TO_TOTAL_SCORE){
     Object.assign({}, state, {
       totalScore: action.totalScore
+    })
+  }
+  if (action.type === DISPLAY_MODAL) {
+    Object.assign({}, state, {
+      isModalOn: action.isModalOn
     })
   }
   if (action.type === LOG_OUT) {

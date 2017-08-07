@@ -88,6 +88,12 @@ export const updateUserQuizChoice = (userQuizChoice) => ({
   userQuizChoice
 }) 
 
+export const DISPLAY_MODAL = 'DISPLAY_MODAL';
+export const displayModal = (isModalOn) => ({
+  type: DISPLAY_MODAL,
+  isModalOn
+}) 
+
 export const logOut = () => dispatch => {
   const accessToken = Cookies.get('accessToken');
   console.log('LOGOUT DISPATCH');

@@ -1,27 +1,40 @@
+ .login-container {
+    margin-bottom: 0;
+ }
+ body {
+    background-color: #FBFADF;
+ }
+
 /* ==========================	
   TITLE & LOGO
 =========================== */	
 
-.login-header-wrapper{
-  background-color: #99CCFF;
-}
-
 .login-header-container {
-  background-color: #99CCFF;
   padding-top: 30px;
-  padding-bottom: 60px;
+  padding-bottom: 0;
   display: flex;
   align-items: center;
-  margin-left: 10%;
+
 }
 
-.login-logo {
-  border: 10px solid #BD1E1E;
+.login-logo  {
+  margin: 0 auto;
+}
+.login-logo img {
+  height: 400px;
+}
+.login-pattern {
   height: 100px;
-  width: 100px;
-  border-radius: 50%; 
-  text-align: center;
-  background: ghostwhite;
+  background: url("../../../media/scale-pattern.png");
+  background-size: 80px 40px;
+  opacity: .3;
+}
+.login-pattern-topper {
+  height: 40px;
+  background: url("../../../media/scale-pattern-topper.png");
+  background-size: 80px 40px;
+  background-repeat: repeat-x;
+  opacity: .3;
 }
 
 .login-logo-script {
@@ -43,11 +56,6 @@
   INTRO
 =========================== */	
 
-.intro {
-    height: 400px; 
-    margin-right: auto;
-    background-color: ghostwhite;
-}
 
 .intro p {
     text-align: center;
@@ -68,29 +76,27 @@
 .button-container {
     width: 50%;
     height: 50px;
-    margin: 0 auto;
-    margin-top: 90px;
+    margin: 40px auto 70px auto;
     text-align: center;
 }
 
 .login-button {
-    background-color: #BD1E1E;
+    background-color: #88B221;
     color: ghostwhite;
-    font-size: 18px;
+
     line-height: 50px;
     font-weight: bold;
     width: 100%;
     margin: 0 auto;
     border-radius: 5px;
-    font-family: 'Rokkitt';
+    font-family: 'Open Sans';
     transition: all 0.3s ease 0s;
     text-decoration: none;
     padding: 20px 40px;
     text-align: center;
 }
 .login-button:hover {
-    background-color: #99CCFF;
-    color: #2e4057;
+    opacity: 0.4;
 }
 
 /* ==========================	
@@ -130,8 +136,8 @@
     background: ghostwhite;
   }
   .login-header-container{
-    padding-top: 0;
-    padding-bottom: 0;
+    padding:0;
+    margin: 0;
   }
   .submit-btn {
     -webkit-appearance: none;
