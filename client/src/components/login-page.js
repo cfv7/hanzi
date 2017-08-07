@@ -7,7 +7,7 @@ export default function LoginPage() {
       <div className="login-header-wrapper">
         <article className="login-header-container">
             <div className="login-logo"> 
-              <img src={require('../../../media/login-logo02.png')} />
+              <img src={require('../../../media/login-logo02.png')} alt="hanzi, learn mandarin the fun way"/>
             </div>
         </article>
         <article className="intro">
