@@ -8,6 +8,7 @@ import Header from './header.js';
 import QuestionPage from './question-page';
 import SelectQuiz from './select-quiz';
 import { getUserInfo }from '../actions';
+
 export class Dashboard extends React.Component{
   constructor(props){
     super(props);
@@ -19,11 +20,7 @@ export class Dashboard extends React.Component{
     return(
       <div className="dashboard-container">
         <Header />
-        <div className="scales-bottomer"></div>
-        {/*<div className="score-board">
-          <h2>Score Board</h2>
-          <p>Score Total:  #</p>
-        </div>*/}
+        <div className="scales-footer"></div>
         <div className="dashboard-info">
           <p>
             Welcome to Hanzi, the fun way to learn Mandarin!<br />
@@ -32,15 +29,12 @@ export class Dashboard extends React.Component{
             language skills!
           </p>
           <h2>Quiz Category</h2>
-
           <SelectQuiz />
-         {/*<Link to={'/quiz'}>Take a Quiz</Link>*/}
         </div>
       </div>
     )
   }
 }
-const mapStateToProps = state => ({
+const mapStateToProps = state => ({})
 
-})
 export default connect(mapStateToProps)(Dashboard);

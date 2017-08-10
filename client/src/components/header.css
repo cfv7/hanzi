@@ -1,7 +1,6 @@
 /* ==========================	
 HEADER
 =========================== */	
-
 .header-title-container {
   display: inline;
 }
@@ -62,12 +61,10 @@ RETURN
 /* ==========================	
 USER 
 =========================== */	
-
  #username p{
   display: inline;
   font-size: xx-large;
 }
-
 
 @media only screen and (min-width: 0px) and (max-width: 600px) {
 .header-title {
