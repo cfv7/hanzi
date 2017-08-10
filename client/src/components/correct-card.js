@@ -2,7 +2,6 @@ import React from 'react';
 import './card.css';
 import {connect} from 'react-redux';
 
-
 class CorrectCard extends React.Component{
   render(){
     return(

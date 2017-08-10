@@ -85,8 +85,7 @@ class QuestionPage extends React.Component {
       }
 
     }
-    // send user to results-page component once quiz is complete
-    // <ResultsPage />
+    // in the future we should potentially update DB
     if (this.props.correct === this.props.quizLength){
       console.log(this.props.quizLength)
       this.props.dispatch(displayModal(true));

@@ -7,7 +7,9 @@ class FrontCard extends React.Component{
     return(
       <div className="card-container">
         <div className="dummy-card">
-          <h4 className="card-value">{this.props.cardInfo.character}</h4>
+          <h4 className="card-value">
+            {this.props.cardInfo.character}
+          </h4>
         </div>
       </div>
     )
